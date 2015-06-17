@@ -41,4 +41,12 @@ class Thread extends Model
         }
         return $threadList;
     }
+
+    /**
+     * 获得一个帖子下的回复
+     */
+    public function post()
+    {
+        return $this->hasMany('App\Models\Forum\Post', 'tid', 'tid');
+    }
 }

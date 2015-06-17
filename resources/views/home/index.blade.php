@@ -1,5 +1,10 @@
 @extends('layouts/basic')
 
+@section('indexCss')
+  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/my-qz-debug.css">
+  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/index-debug.css">
+@endsection
+
 @section('contents')
   @include('home/banner')
 
