@@ -1,27 +1,28 @@
-## Laravel PHP Framework
+## 用laravel实现的discuz站点
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+#### 短期目标
+用laravel5.1这个长期支持版本来重写一边discuz论坛的前台部分，尽量不改动dz原有的表结构以及后台功能
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+#### 长期目标
+脱离discuz的框架，把这个应用做成一个真正的社交平台
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+#### 使用需求
+1. php( >= 5.5.9)或hhvm(仅测试了3.7.2)
+2. nginx: 测试了1.8.0版本
+3. mysql: 测试了mariadb 10.0.19版本
+4. redis: 测试了3.0.2版本
+5. 服务器: 任意版本linux应该都可以
+6. 框架: laravel 5.1
 
-## Official Documentation
+#### 为什么使用laravel
+laravel是我目前看到过的代码结构最清晰最优雅，扩展性最好的一个php框架，文档和第三方库都非常丰富，这就意味着个人开发难度降低了很多。
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+#### 开发环境搭建
+1. 克隆代码库
+2. 编辑.env文件，配置模板在.env.example
+3. 给storage目录加上第三方可写权限
+`sudo chmod -R a+w storage`
+4. 配置nginx, php, mysql, redis，并且把服务开启
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+#### 如何贡献
+项目还处于非常初级的阶段，离可用还有很长一段距离，暂时不打算接受第三方的pr，如果有建议或者是想法可以先发issue，等站点功能稍微成熟之后我会考虑大家一起协作开发
