@@ -8,27 +8,27 @@
   <div class="wrap-liuyan"><script type="text/javascript">var phpFid = parseInt('66'), phpTid = parseInt('209022'), phpImgHash='051c8c1e51b7bfdda6e1fa86d750ebc8', phpFavid='46569', phpFormHash='c16192c8', phpCommentNum = 5, phpMasterId=186432;</script>
     <div class="tz-bread-box">
       <div class="tz-bread-left">
-        <a href="forum-{{ $thread->fid }}-1.html"><i>&lt;&nbsp;返回</i>个性小屋</a>
+        <a href="{{ action('ForumController@show', ['fid' => $forum->fid, 'page' => 1])}}"><i>&lt;&nbsp;返回</i>{{ $forum->name }}</a>
       </div>
       <div id="pt" class="bm cl">
         <a href="./">啧啧</a>
         <em>&gt;</em>
-        <a href="forum-{{ $thread->fid }}-1.html">个性小屋</a>
+        <a href="{{ action('ForumController@show', ['fid' => $forum->fid, 'page' => 1])}}">{{ $forum->name }}</a>
         <em>&gt;</em>
-        <a href="thread-209022-1-1.html">10秒钟，世界会发生什么？</a>
+        <a href="thread-{{ $thread->tid }}-1-1.html">{{ $thread->subject }}</a>
       </div>
     </div>
 
     <div class="quanzi-ad-box">
-      <a class="quanzi-logo" href="forum-{{ $thread->fid }}-1.html">
+      <a class="quanzi-logo" href="{{ action('ForumController@show', ['fid' => $forum->fid, 'page' => 1])}}">
         <img src="http://i.zeze.com/attachment/common/32/common_66_icon.jpg?2015061722" data-bd-imgshare-binded="1">
         <div class="shade"></div>
       </a>
       <div class="qz-desc-box">
         <div class="qz-desc-top">
-          <a href="forum-66-1.html" class="qz-desc-name">个性小屋</a>
+          <a href="{{ action('ForumController@show', ['fid' => $forum->fid, 'page' => 1])}}" class="qz-desc-name">{{ $forum->name }}</a>
           <span class="qz-desc-join">
-            <a href="javascript:;" class="qz-about-join" data-qzid="66"></a>
+            <a href="javascript:;" class="qz-about-join" data-qzid="{{ $forum->fid }}"></a>
           </span>
         </div>
         <div class="qz-desc-bottom">
@@ -47,88 +47,6 @@
     </div>
     <!-- end quanzi-ad-box -->
 
-    <div class="person-pk-box">
-      <div class="user-card master-info">
-        <div class="user-img">
-          <a class="user-img-wrap mutual" href="hispage-186432-0-1.html" target="_blank" data-zan="43" data-mycare="573" data-careme="283" data-level="crown-yellow08" data-focus="0" data-isself="0" data-fuid="186432" data-gold="3927" data-credits="3927" data-threads="1414" data-sex="user-sex-girl" data-nickname="幽狐魅舞">
-            <img src="http://i.zeze.com/avatar/000/18/64/32_avatar_middle.jpg?1433564894" data-bd-imgshare-binded="1">        <div class="shade"></div>
-            <i class="i-mask80"></i>
-          </a>
-        </div>
-      </div>
-      <div class="pk-text-box">
-        <div class="pk-text-tit">
-          <div class="pk-text">
-            <h3>10秒钟，世界会发生什么？<span class="fan"></span></h3>
-          </div>
-
-
-        </div>
-        <div class="user-time user-card clearfix">
-          <div class="name-box">
-            <a href="hispage-186432-0-1.html" target="_blank">幽狐魅舞</a>
-          </div>
-          <div class="user-lever">
-            <span class="user-sex user-sex-girl"></span>
-            <a class="user-crown" href="javascript:;">
-              <span class="user-crown-img crown-yellow08"></span>
-            </a>
-          </div>
-          <span><span title="2015-6-17 20:42:49">1小时前</span></span>
-        </div>
-        <p>
-          <br>
-        </p><div align="center"><img id="aimg_Mgg2g" aid="" src="http://www.7k7kjs.cn/zeze/static/image/hrline/2.gif" data-bd-imgshare-binded="1"></div><br>
-        <div align="center">十秒钟</div><br>
-        <div align="center">也许你发了一个呆</div><br>
-        <div align="center">也许你舔了一口冰欺凌</div><br>
-        <div align="center">但在另一个角落里，已经有人改变了世界</div><br>
-        <div align="center">而世界，本身也面目一新</div><br>
-        <div align="center">觉得惊讶+1，不惊讶-1，暖贴=</div><br>
-        <br>
-        <div align="center"><img id="aimg_cEqV5" aid="" src="http://www.7k7kjs.cn/zeze/static/image/hrline/2.gif" data-bd-imgshare-binded="1"></div><br>
-        <div align="center">
-          <ignore_js_op>
-
-            <img id="aimg_2424439" aid="2424439" data-url="http://i.zeze.com/attachment/forum/201506/17/204224ae40ud69qdq8b14d.jpg" src="http://i.zeze.com/attachment/forum/201506/17/204224ae40ud69qdq8b14d.jpg" class="" data-bd-imgshare-binded="1">
-
-          </ignore_js_op>
-        </div><br>
-        <br>
-        <br>
-        <br>
-
-        <p></p>
-        <div class="mes-list-rl">
-          <div class="mes-feedback J-subreply-btn-wrap">
-            <div class="mes-feedback-r">
-              <a class="mes-replay J-subreply-btn-reply" data-pid="4002371" href="javascript:;">
-                <span>回复</span>
-              </a>
-              <a class="mes-replay J-subreply-btn-unreply" href="javascript:;" style="display: none;">
-                <span>回复</span>
-              </a>
-              <div class="function-zan" id="J-btn-main-up"><a href="javascript:;"><i class="function-zan-heart"></i><span class="func-zan-text">赞</span><span class="num">(<i>5</i>)</span></a></div>
-            </div>
-            <div class="function-r bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1434550523846">
-              <a class="func-coll" id="J-btn-tzcoll" href="javascript:;"><span class="colltext">收藏</span></a>
-              <span class="num">（1）</span>
-            </div>
-            <div class="func-share bds_more" id="J-btn-share-show" href="javascript:;" data-cmd="more">
-              <span>分享</span>
-              <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="share_1" data-bd-bind="1434550523846">
-                <a class="bds_qzonea" data-cmd="qzone" href="#" title="分享到QQ空间"></a>
-                <a class="bds_tqqa" data-cmd="sqq" title="分享到QQ好友"></a>
-                <a class="bds_tsinaa" data-cmd="tsina" title="分享到新浪微博"></a>
-                <a class="bds_weixina" data-cmd="weixin" title="分享到微信"></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="label-box">
-      </div>
-    </div><!-- end person-pk-box -->
     <div id="J-message-list-parent" class="message-box">
       @foreach($posts as $k => $post)
         <div class="message-list" id="pid4002640">
@@ -192,7 +110,7 @@
 
     <div id="fd_page_bottom" class="zeze-page page-center">
       <div class="back-qz">
-        <a href="forum.php?mod=forumdisplay&amp;fid=66"><i>&lt;&nbsp;返回</i>个性小屋</a>
+        <a href="{{ action('ForumController@show', ['fid' => $forum->fid, 'page' => 1])}}"><i>&lt;&nbsp;返回</i>个性小屋</a>
       </div>
       <div class="pg"><strong>1</strong><a target="_self" href="thread-209022-2-1.html">2</a><a target="_self" href="thread-209022-2-1.html" class="nxt ie6transbg">下一页</a><span>到</span><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1"><span title="共 2 页"> </span></label><span>页</span><a target="_self" href="javascript:;" class="sure">确&nbsp;定</a></div></div>
 

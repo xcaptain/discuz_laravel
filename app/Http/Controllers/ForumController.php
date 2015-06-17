@@ -6,25 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Forum\Thread;
 
-class ThreadController extends Controller
+class ForumController extends Controller
 {
-    /**
-     * 公共配置
-     * @ppp: 每页显示楼层数, int
-     */
-    public function __construct()
-    {
-        $this->ppp = 20;
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
     }
@@ -52,27 +42,12 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $fid
      * @return Response
      */
-    public function show($tid, $page)
+    public function show($fid, $page)
     {
-        $offset = ($page - 1) * $this->ppp;
-        $threadModel = new Thread;
-        $thread = $threadModel->find($tid);
-        $posts = $thread->post()
-               ->where('invisible', 0)
-               ->orderBy('pid', 'asc')
-               ->skip($offset)
-               ->take($this->ppp)
-               ->get();
-        $forum = $thread->forum()->first();
-        return view('thread/show', [
-            'posts'  => $posts,
-            'thread' => $thread,
-            'forum'  => $forum,
-            'page'   => $page,
-        ]);
+
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models\Forum;
 
 use Illuminate\Database\Eloquent\Model;
+use JBBCode\JBBCode;
 
 class Thread extends Model
 {
@@ -43,10 +44,20 @@ class Thread extends Model
     }
 
     /**
-     * 获得一个帖子下的回复
+     * 与Post模型关联
+     * Thread中一个tid关联这Post中多个pid
      */
     public function post()
     {
         return $this->hasMany('App\Models\Forum\Post', 'tid', 'tid');
+    }
+
+    /**
+     * 与Forum模型关联
+     * Forum中1个fid对应着Thread中多个tid
+     */
+    public function forum()
+    {
+        return $this->belongsTo('App\Models\Forum\Forum', 'fid', 'fid');
     }
 }
