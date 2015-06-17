@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->tpp = 20;
+        Carbon::setLocale('zh'); //设置中文语言
     }
 
     /**
@@ -27,8 +28,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $dt = Carbon::now();
-        dd($dt);
         $type = $request->get('type') ? $request->get('type') : 'all';
         $page = $request->get('page') ? $request->get('page') : 1;
         $threadList = Thread::getThreadList($type, $page, $this->tpp);

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Forum\Thread;
+use Carbon\Carbon;
 
 class ThreadController extends Controller
 {
@@ -17,6 +18,7 @@ class ThreadController extends Controller
     public function __construct()
     {
         $this->ppp = 20;
+        Carbon::setLocale('zh'); //设置中文语言
     }
 
     /**
