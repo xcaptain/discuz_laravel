@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Forum\Thread;
 use Carbon\Carbon;
+use App\Helpers\Message;
 
 class ThreadController extends Controller
 {
@@ -19,6 +20,7 @@ class ThreadController extends Controller
     {
         $this->ppp = 20;
         Carbon::setLocale('zh'); //设置中文语言
+        $this->now = Carbon::now();
     }
 
     /**
@@ -68,6 +70,10 @@ class ThreadController extends Controller
                ->skip($offset)
                ->take($this->ppp)
                ->get();
+        foreach($posts as $k => $v) {
+            $v->dateline = $this->now->diffForHumans(Carbon::createFromTimeStamp($v->dateline));
+            $v->message = Message::parseReply($v->message);
+        }
         $forum = $thread->forum()->first();
         return view('thread/show', [
             'posts'  => $posts,

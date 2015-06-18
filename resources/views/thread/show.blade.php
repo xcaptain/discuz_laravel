@@ -73,7 +73,7 @@
           <div class="message-list-r">
             <div class="mes-list-rl">
               <div class="mes-text">
-                {{ $post->message }}
+                {!! $post->message !!}
               </div>
               <div class="mes-feedback J-subreply-btn-wrap">
                 <div class="mes-feedback-r">
