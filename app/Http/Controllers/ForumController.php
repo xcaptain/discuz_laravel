@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Models\Forum\Forum;
 
 class ForumController extends Controller
 {
+    public function __construct()
+    {
+        $this->now = Carbon::now();
+        $this->tpp = 20;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +55,19 @@ class ForumController extends Controller
      */
     public function show($fid, $page)
     {
-
+        $forumModel = new Forum;
+        $forum = $forumModel->find($fid);
+        $threadList = $forum->thread()
+                    ->where('displayorder', '>=', 0)
+                    ->orderBy('tid', 'desc')
+                    ->paginate($this->tpp);
+        foreach($threadList as $k => $thread) {
+            $thread->lastpostdate = $this->now->diffForHumans(Carbon::createFromTimeStamp($thread->lastpost));
+        }
+        return view('forum/show', [
+            'now' => $this->now,
+            'threadList' => $threadList,
+        ]);
     }
 
     /**

@@ -31,4 +31,9 @@ class Forum extends Model
         }
         return $data;
     }
+
+    public function thread()
+    {
+        return $this->hasMany('App\Models\Forum\Thread', 'fid', 'fid');
+    }
 }

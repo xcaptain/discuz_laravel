@@ -61,7 +61,6 @@ class ThreadController extends Controller
      */
     public function show($tid, $page)
     {
-        $offset = ($page - 1) * $this->ppp;
         $threadModel = new Thread;
         $thread = $threadModel->find($tid);
         $posts = $thread->post()
