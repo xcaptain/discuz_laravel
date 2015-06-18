@@ -74,6 +74,12 @@ return [
     |
     */
 
-    'prefix' => 'laravel',
+    'prefix' => 'lzeze',
+
+    //圈子缓存过期时间，单位是分钟
+    'forumttl' => 60,
+
+    //帖子缓存过期时间，单位是分钟
+    'threadttl' => 60,
 
 ];

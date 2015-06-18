@@ -21,8 +21,7 @@ class HomeController extends Controller
         $this->tpp = 20;
         Carbon::setLocale('zh'); //设置中文语言
         $this->now = Carbon::now();
-        $forumInfo = Forum::getForumInfo();
-        dd($forumInfo);
+        $this->forumInfo = Forum::getForumInfo();
     }
 
     /**
@@ -42,6 +41,7 @@ class HomeController extends Controller
         }
         return view('home/index', [
             'threadList' => $threadList,
+            'forumInfo'  => $this->forumInfo,
         ]);
     }
 

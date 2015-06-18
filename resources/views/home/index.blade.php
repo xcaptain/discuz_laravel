@@ -20,8 +20,8 @@
           <div class="list-list" data-tid="207680">
             <div class="list-list-t">
               <a href="{{ action('ForumController@show', ['fid' => $thread->fid, 'page' => 1])}}" target="_blank">
-                <img src="http://i.zeze.com/attachment/common/32/common_66_icon.jpg">
-                <p>{{ $forum->name }}</p>
+                <img src="{{ $forumInfo[$thread->fid]->icon }}">
+                <p>{{ $forumInfo[$thread->fid]->name }}</p>
               </a>
             </div>
             <div class="list-list-l">
