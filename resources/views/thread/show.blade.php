@@ -108,8 +108,11 @@
       <input type="hidden" name="page" value="1">
     </form>
 
-    {!! $posts->render() !!}
-
+    <div class="zeze-page page-left" id="fd_page_bottom">
+      <div class="pg">
+        {!! $posts->render() !!}
+      </div>
+    </div>
     <div class="fb-area">
       <div class="fb-area-top">
         <div class="fb-top-l">回复</div>
