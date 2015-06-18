@@ -53,7 +53,8 @@
           <div class="user-card message-list-l">
             <div class="user-img">
               <a class="user-img-wrap mutual" href="hispage-{{ $post->authorid }}-0-1.html" target="_blank" data-zan="43" data-mycare="573" data-careme="283" data-level="crown-yellow08" data-focus="0" data-isself="0" data-fuid="186432" data-gold="3927" data-credits="3927" data-threads="1414" data-sex="user-sex-girl" data-nickname="{{ $post->author }}">
-                <img src="{{ Attachment::avatar($post->authorid, 'middle') }}" data-bd-imgshare-binded="1">                <div class="shade"></div>
+                <img src="{{ Attachment::avatar($post->authorid, 'middle') }}" data-bd-imgshare-binded="1">
+                <div class="shade"></div>
                 <i class="i-mask80"></i>
                 <div class="floor-poster"></div>
               </a>
@@ -106,62 +107,55 @@
       <input type="hidden" name="listextra" value="">
       <input type="hidden" name="page" value="1">
     </form>
-    <div class="pgbtn"><a id="J-btn-big-next" href="/thread-209022-2-1.html" hidefocus="true" class="bm_h">下一页</a></div>
 
-    <div id="fd_page_bottom" class="zeze-page page-center">
-      <div class="back-qz">
-        <a href="{{ action('ForumController@show', ['fid' => $forum->fid, 'page' => 1])}}"><i>&lt;&nbsp;返回</i>个性小屋</a>
+    {!! $posts->render() !!}
+
+    <div class="fb-area">
+      <div class="fb-area-top">
+        <div class="fb-top-l">回复</div>
       </div>
-      <div class="pg"><strong>1</strong><a target="_self" href="thread-209022-2-1.html">2</a><a target="_self" href="thread-209022-2-1.html" class="nxt ie6transbg">下一页</a><span>到</span><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1"><span title="共 2 页"> </span></label><span>页</span><a target="_self" href="javascript:;" class="sure">确&nbsp;定</a></div></div>
-
-
-    <!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"></div><!--[/diy]-->
-      <div class="fb-area">
-        <div class="fb-area-top">
-          <div class="fb-top-l">回复</div>
-        </div>
-        <form action="forum.php?mod=post&amp;action=reply&amp;fid=66&amp;tid=209022&amp;replysubmit=yes&amp;handlekey=fastpost&amp;isjson=1" method="post" id="J-form-tiezi-e">
-          <input type="hidden" name="formhash" value="c16192c8">
-          <div class="fb-textarea">
-            <div class="area">
-              <div class="pt hm show" id="J-bottom-editor-unlog">
-                您需要登录后才可以回帖
-                <a href="member.php?mod=logging&amp;action=login" id="J-bottom-edit-btn-login" class="xi2">登录</a>|<a href="member.php?mod=register" class="xi2">立即注册</a>
-                <a href="http://www.zeze.com/connect.php?mod=login&amp;op=init&amp;referer=forum.php%3Fmod%3Dviewthread%26tid%3D89258%26extra%3Dpage%253D1%26page%3D1&amp;statfrom=login" target="_top" rel="nofollow"><img src="http://www.7k7kjs.cn/zeze/static/image/common/btn-qq-login.png" class="vm" data-bd-imgshare-binded="1"></a>
-              </div>
-              <textarea name="message" id="e_textarea" class="pt" rows="10" style="display: none;"></textarea>
+      <form action="forum.php?mod=post&amp;action=reply&amp;fid=66&amp;tid=209022&amp;replysubmit=yes&amp;handlekey=fastpost&amp;isjson=1" method="post" id="J-form-tiezi-e">
+        <input type="hidden" name="formhash" value="c16192c8">
+        <div class="fb-textarea">
+          <div class="area">
+            <div class="pt hm show" id="J-bottom-editor-unlog">
+              您需要登录后才可以回帖
+              <a href="member.php?mod=logging&amp;action=login" id="J-bottom-edit-btn-login" class="xi2">登录</a>|<a href="member.php?mod=register" class="xi2">立即注册</a>
+              <a href="http://www.zeze.com/connect.php?mod=login&amp;op=init&amp;referer=forum.php%3Fmod%3Dviewthread%26tid%3D89258%26extra%3Dpage%253D1%26page%3D1&amp;statfrom=login" target="_top" rel="nofollow"><img src="http://www.7k7kjs.cn/zeze/static/image/common/btn-qq-login.png" class="vm" data-bd-imgshare-binded="1"></a>
             </div>
+            <textarea name="message" id="e_textarea" class="pt" rows="10" style="display: none;"></textarea>
           </div>
-          <div class="fb-area-bottom" style="display: none;">
-            <div class="fb-bot-l J-e-controls-wrap">
-              <a class="fb-area-em" data-role="e-control" id="e_sml" href="javascript:;" menupos="11"></a>
-              <a class="fb-area-img J-upload" data-target="e" data-role="e-control" href="javascript:;"></a>
-            </div>
-            <div class="fb-bot-r">
-              <a id="J-editor-btn-submit-e" href="javascript:;"></a>
-            </div>
-          </div>
-          <p class="pub-input-error-msg" id="J-editor-error-holder-e"></p>
-        </form>
-      </div>
-      <div class="wp mtn">
-        <!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
-      </div>
-      <div style="display:none;">
-        <div class="replay-send-box" id="J-dynamic-editor">
-          <div class="replay-send-box-area"><textarea rows="1" id="g_textarea" placeholder="想说点儿什么？写在这里吧"></textarea></div>
-          <input type="submit" class="fast-reply-box-submit" id="J-subreply-btn-quick-reply" data-pid="4754" value="快速回复">
         </div>
-      </div><!-- 举报 -->
+        <div class="fb-area-bottom" style="display: none;">
+          <div class="fb-bot-l J-e-controls-wrap">
+            <a class="fb-area-em" data-role="e-control" id="e_sml" href="javascript:;" menupos="11"></a>
+            <a class="fb-area-img J-upload" data-target="e" data-role="e-control" href="javascript:;"></a>
+          </div>
+          <div class="fb-bot-r">
+            <a id="J-editor-btn-submit-e" href="javascript:;"></a>
+          </div>
+        </div>
+        <p class="pub-input-error-msg" id="J-editor-error-holder-e"></p>
+      </form>
+    </div>
+    <div class="wp mtn">
+      <!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+    </div>
+    <div style="display:none;">
+      <div class="replay-send-box" id="J-dynamic-editor">
+        <div class="replay-send-box-area"><textarea rows="1" id="g_textarea" placeholder="想说点儿什么？写在这里吧"></textarea></div>
+        <input type="submit" class="fast-reply-box-submit" id="J-subreply-btn-quick-reply" data-pid="4754" value="快速回复">
+      </div>
+    </div><!-- 举报 -->
 
-      <script src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js" type="text/javascript"></script>
-      <script>
-       requirejs.config({
-         urlArgs: 'version=20150107'
-       });
-       require([JSURL+'/common-conf.js',JSURL+'/editor-conf.js',JSURL+'/upload-conf.js'],function(common){
-         require(['app/tiezi-huati']);
-       })
-      </script>
+    <script src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js" type="text/javascript"></script>
+    <script>
+     requirejs.config({
+       urlArgs: 'version=20150107'
+     });
+     require([JSURL+'/common-conf.js',JSURL+'/editor-conf.js',JSURL+'/upload-conf.js'],function(common){
+       require(['app/tiezi-huati']);
+     })
+    </script>
   </div>
 @endsection
