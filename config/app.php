@@ -198,7 +198,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'BBCode'    => Golonka\BBCode\Facades\BBCodeParser::class,
-        'Attachment'=> App\Helpers\Attachment::class,
+        'Attach'    => App\Helpers\Attach::class,
         'Message'   => App\Helpers\Message::class,
     ],
 

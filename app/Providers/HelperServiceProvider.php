@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Helpers\Attachment;
 
 class HelperServiceProvider extends ServiceProvider
 {

@@ -24,7 +24,7 @@ class Forum extends Model
                   ->get();
             foreach($tmpData as $k => $v) {
                 $fid = $v->fid;
-                $v->icon = Attachment::forumIconUrl($v->icon);
+                $v->icon = \Attach::forumIconUrl($v->icon);
                 $data[$fid] = $v;
             }
             Cache::put($key, $data, config('cache.forumttl'));

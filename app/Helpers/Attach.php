@@ -5,7 +5,7 @@ namespace App\Helpers;
 /**
  * 关于附件方法的帮助函数都在这里
  */
-class Attachment
+class Attach
 {
     /**
      * 获得圈子图标的绝对路径
