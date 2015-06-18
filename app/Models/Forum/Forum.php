@@ -3,7 +3,6 @@
 namespace App\Models\Forum;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Helpers\Attachment;
 use Cache;
 use DB;
 

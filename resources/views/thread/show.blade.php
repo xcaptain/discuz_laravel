@@ -53,7 +53,7 @@
           <div class="user-card message-list-l">
             <div class="user-img">
               <a class="user-img-wrap mutual" href="hispage-{{ $post->authorid }}-0-1.html" target="_blank" data-zan="43" data-mycare="573" data-careme="283" data-level="crown-yellow08" data-focus="0" data-isself="0" data-fuid="186432" data-gold="3927" data-credits="3927" data-threads="1414" data-sex="user-sex-girl" data-nickname="{{ $post->author }}">
-                <img src="http://i.zeze.com/avatar/000/18/64/32_avatar_middle.jpg?1433564894" data-bd-imgshare-binded="1">                <div class="shade"></div>
+                <img src="{{ Attachment::avatar($post->authorid, 'middle') }}" data-bd-imgshare-binded="1">                <div class="shade"></div>
                 <i class="i-mask80"></i>
                 <div class="floor-poster"></div>
               </a>

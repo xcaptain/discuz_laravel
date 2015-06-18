@@ -28,7 +28,7 @@ return [
 
     'url' => 'http://l.zeze.com',
 
-    'attachurl' => 'http://i.zeze.com',
+    'cdn' => 'http://i.zeze.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -198,6 +198,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'BBCode'    => Golonka\BBCode\Facades\BBCodeParser::class,
+        'Attachment'=> App\Helpers\Attachment::class,
+        'Message'   => App\Helpers\Message::class,
     ],
 
 ];
