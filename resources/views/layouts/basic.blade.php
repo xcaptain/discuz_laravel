@@ -32,6 +32,9 @@
 
     @section('threadCss')
     @show
+
+    @section('forumCss')
+    @show
     <script type="text/html" id="J-template-popup-login">
       <form method="post" autocomplete="off" name="login" id="loginform_LDiXX" action="member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;handlekey=login&amp;loginhash=LDiXX"  fwin="login" target="_self">
         <input type="hidden" name="formhash" value="c16192c8" />
