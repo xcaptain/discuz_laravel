@@ -19,9 +19,9 @@
         @foreach($threadList as $k => $thread)
           <div class="list-list" data-tid="207680">
             <div class="list-list-t">
-              <a href="forum-66-1.html" target="_blank">
+              <a href="{{ action('ForumController@show', ['fid' => $thread->fid, 'page' => 1])}}" target="_blank">
                 <img src="http://i.zeze.com/attachment/common/32/common_66_icon.jpg">
-                <p>个性小屋</p>
+                <p>{{ $forum->name }}</p>
               </a>
             </div>
             <div class="list-list-l">
@@ -54,8 +54,8 @@
                 </ul>
               </div>
               <div class="forum-name">
-                <a href="hispage-154993-0-1.html" target="_blank" class="list-person">{{ $thread->lastposter }}</a>
-                <p class="list-time"><span title="2015-6-17 09:12">{{ $thread->lastpost }}</span></p>
+                <a href="hispage-{{ $thread->lastposterid }}-0-1.html" target="_blank" class="list-person">{{ $thread->lastposter }}</a>
+                <p class="list-time"><span title="{{ $thread->lastpostdate }}">{{ $thread->lastpostdate }}</span></p>
               </div>
             </div>
           </div><!-- end list-list -->

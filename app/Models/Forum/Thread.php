@@ -18,9 +18,11 @@ class Thread extends Model
      */
     public static function getThreadList($type, $page, $tpp)
     {
+        $offset = ($page - 1) * $tpp;
         if($type == 'all') { //所有帖子按时间先后倒序
             $threadList = self::where('displayorder', '>=', 0)
                         ->orderBy('tid', 'desc')
+                        ->skip($offset)
                         ->take($tpp)
                         ->get();
         } elseif($type == 'new') { //所有精华帖按时间倒序

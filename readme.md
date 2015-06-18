@@ -24,7 +24,8 @@ laravel是我目前看到过的代码结构最清晰最优雅，扩展性最好�
 `sudo chmod -R a+w storage`
 4. 给`bootstrap/cache`目录加上第三方可写权限
 `sudo chmod -R a+w bootstrap/cache`
-5. 配置nginx, php, mysql, redis，并且把服务开启
+5. `composer update`更新依赖，如果被防火墙屏蔽请使用代理下载
+6. 配置nginx, php, mysql, redis，并且把服务开启
 
 #### 如何贡献
 项目还处于非常初级的阶段，离可用还有很长一段距离，暂时不打算接受第三方的pr，如果有建议或者是想法可以先发issue，等站点功能稍微成熟之后我会考虑大家一起协作开发

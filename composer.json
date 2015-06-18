@@ -14,7 +14,8 @@
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
         "nesbot/carbon": "~1.19",
-        "jbbcode/jbbcode": "1.3.*"
+        "jbbcode/jbbcode": "1.3.*",
+        "predis/predis": "~1.0"
     },
     "autoload": {
         "classmap": [
