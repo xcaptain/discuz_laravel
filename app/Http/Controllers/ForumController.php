@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\Forum\Forum;
+use App\Models\Forum\Attachment;
 
 class ForumController extends Controller
 {
@@ -63,6 +64,7 @@ class ForumController extends Controller
                     ->paginate($this->tpp);
         foreach($threadList as $k => $thread) {
             $thread->lastpostdate = $this->now->diffForHumans(Carbon::createFromTimeStamp($thread->lastpost));
+            $thread->thumb = Attachment::getThumbByTid($thread->tid, 4); //获得主帖缩略图
         }
         return view('forum/show', [
             'now' => $this->now,

@@ -24,9 +24,9 @@
               </h3>
               <div class="list-img-box">
                 <ul class="list-img J-list-img">
-                  <li><a class="mutual" href="thread-51052-1-1.html" target="_blank"><img data-src="http://i.zeze.com/attachment/image/000/79/68/92_180_90.jpg?1432641224" data-big="http://i.zeze.com/attachment/forum/201502/18/221256h1mm9v9mvpeipepr.jpg" class="lazy-img" src="http://www.7k7kjs.cn/zeze/img/common/empty.png"></a><div class="shade"></div></li>
-                  <li><a class="mutual" href="thread-51052-1-1.html" target="_blank"><img data-src="http://i.zeze.com/attachment/image/000/79/69/17_180_90.jpg?1432641224" data-big="http://i.zeze.com/attachment/forum/201502/18/221516nsmyssyo6okmsexm.jpg" class="lazy-img" src="http://www.7k7kjs.cn/zeze/img/common/empty.png"></a><div class="shade"></div></li>
-                  <li><a class="mutual" href="thread-51052-1-1.html" target="_blank"><img data-src="http://i.zeze.com/attachment/image/000/79/69/18_180_90.jpg?1432641224" data-big="http://i.zeze.com/attachment/forum/201502/18/221522vhjef9f9tzei2a86.jpg" class="lazy-img" src="http://www.7k7kjs.cn/zeze/img/common/empty.png"></a><div class="shade"></div></li>
+                  @foreach($thread->thumb as $kk => $img)
+                    {{ dd($img) }}
+                  @endforeach
                 </ul>
               </div>
             </div>
@@ -53,7 +53,7 @@
 </div>
 <div class="zeze-page page-left" id="fd_page_bottom">
   <div class="pg">
-    {!! $thread->render() !!}
+    {!! $threadList->render() !!}
   </div>
 </div>
 @endsection

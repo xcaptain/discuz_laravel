@@ -23,6 +23,16 @@ class Attach
         }
     }
 
+    public static function threadThumb($url)
+    {
+        $cdn = config('app.cdn');
+        if(strpos($url, 'http:') !== false) {
+            return $url;
+        } else {
+            return $cdn . '/attachment/forum/' . $url;
+        }
+    }
+
     /**
      * 获得用户头像的绝对路径
      *
@@ -30,7 +40,8 @@ class Attach
      * @size: string, 用户头像尺寸
      * @return: avatar, 用户头像链接
      */
-    public static function avatar($uid, $size = 'small') {
+    public static function avatar($uid, $size = 'small')
+    {
         if(!in_array($size, ['small', 'middle', 'big'])) {
             $size = 'small';
         }
