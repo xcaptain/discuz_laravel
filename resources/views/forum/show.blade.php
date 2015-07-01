@@ -20,12 +20,12 @@
             </div>
             <div class="list-list-l">
               <h3>
-                <a target="_blank" href="thread-51052-1-1.html">{{ $thread->subject }}</a>
+                <a target="_blank" href="{{ action('ThreadController@show', ['tid' => $thread->tid, 'page' => 1]) }}">{{ $thread->subject }}</a>
               </h3>
               <div class="list-img-box">
                 <ul class="list-img J-list-img">
                   @foreach($thread->thumb as $kk => $img)
-                    {{ dd($img) }}
+                    <li><a class="mutual" href="thread-{{ $thread->tid }}-1-1.html" target="_blank"><img data-src="http://i.zeze.com/attachment/image/{{ $img->attachment }}" data-big="http://i.zeze.com/attachment/image/{{ $img->attachment }}" class="" src="http://i.zeze.com/attachment/image/{{ $img->attachment }}"></a><div class="shade"></div></li>
                   @endforeach
                 </ul>
               </div>

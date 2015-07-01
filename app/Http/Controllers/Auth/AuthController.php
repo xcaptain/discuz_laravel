@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -60,5 +62,20 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Login page
+     */
+    public function getLogin(Request $request)
+    {
+        return view('auth/login');
+    }
+    public function postLogin(Request $request)
+    {
+        $username = $request->username;
+        $user = User::where('username', $username)->first();
+        //待做的事，通过 ucenter 获得用户密码
+        Auth::loginUsingId($user->uid);
     }
 }

@@ -57,8 +57,8 @@ class ForumController extends Controller
     public function show($fid, $page)
     {
         $forumModel = new Forum;
-        $forum = $forumModel->find($fid);
-        $threadList = $forum->thread()
+        $threadList = $forumModel->find($fid)
+                    ->thread()
                     ->where('displayorder', '>=', 0)
                     ->orderBy('tid', 'desc')
                     ->paginate($this->tpp);

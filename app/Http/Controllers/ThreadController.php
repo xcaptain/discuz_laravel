@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Forum\Thread;
@@ -61,6 +61,7 @@ class ThreadController extends Controller
      */
     public function show($tid, $page)
     {
+        dd(Auth::user());
         $threadModel = new Thread;
         $thread = $threadModel->find($tid);
         $posts = $thread->post()
