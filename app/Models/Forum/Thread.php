@@ -62,4 +62,25 @@ class Thread extends Model
     {
         return $this->belongsTo('App\Models\Forum\Forum', 'fid', 'fid');
     }
+
+    /**
+     * 获得用户发表或回复过的帖子
+     * @uid: 作者id
+     * @typeid: 0表示用户发表，1表示用户参与
+     */
+    public function getThreadListByAuthor($uid, $typeid = 0, $tpp = 20)
+    {
+        if($typeid == 0) { //用户发表的帖子
+            $threadList = self::where('displayorder', '>=', 0)
+                        ->where('authorid', '=', $uid)
+                        ->orderBy('tid', 'desc')
+                        ->paginate($tpp);
+        } else { //用户参与的帖子
+            $threadList = self::where('displayorder', '>=', 0)
+                        ->where('authorid', '=', $uid)
+                        ->orderBy('tid', 'desc')
+                        ->paginate($tpp);
+        }
+        return $threadList;
+    }
 }

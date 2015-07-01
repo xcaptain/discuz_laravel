@@ -20,6 +20,8 @@ Route::get('/thread-{tid}-{page}.html', 'ThreadController@show')
     ->where(['tid' => '^[1-9]\d*', 'page' => '^[1-9]\d*']);
 Route::get('/forum-{fid}-{page}.html', 'ForumController@show')
     ->where(['fid' => '[0-9]+', 'page' => '^[1-9]\d*']);
+Route::get('/hispage-{uid}-{typeid}-{page}.html', 'HispageController@index')
+    ->where(['uid' => '[0-9]+', 'typeid' => '[0|1]', 'page' => '^[1-9]\d*']);
 
 Route::get('/auth/login/', 'Auth\AuthController@getLogin');
 Route::post('/auth/login/', 'Auth\AuthController@postLogin');
