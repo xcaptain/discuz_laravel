@@ -65,17 +65,40 @@ class AuthController extends Controller
     }
 
     /**
-     * Login page
+     * 登录页
      */
     public function getLogin(Request $request)
     {
         return view('auth/login');
     }
+
+    /**
+     * 处理登录表单，记录登录用户
+     */
     public function postLogin(Request $request)
     {
         $username = $request->username;
+        $password = $request->password;
+        $passwordmd5 = preg_match('/^\w{32}$/', $password) ? $password : md5($password);
         $user = User::where('username', $username)->first();
-        //待做的事，通过 ucenter 获得用户密码
-        Auth::loginUsingId($user->uid);
+        $passwordNew = md5($passwordmd5.$user->salt);
+        if($passwordNew == $user->password) {
+            Auth::loginUsingId($user->uid);
+            return redirect('/home');
+        } else {
+            dd('login failed');
+        }
+    }
+
+    /**
+     * 登出用户
+     */
+    public function getLogout(Request $request)
+    {
+        if(Auth::logout()) {
+            redirect('/home');
+        } else {
+            dd('logout failed');
+        }
     }
 }

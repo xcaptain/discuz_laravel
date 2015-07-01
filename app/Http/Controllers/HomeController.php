@@ -18,6 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth'); //设置必须登录才能访问
         $this->tpp = 20;
         Carbon::setLocale('zh'); //设置中文语言
         $this->now = Carbon::now();

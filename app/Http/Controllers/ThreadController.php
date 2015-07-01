@@ -61,7 +61,6 @@ class ThreadController extends Controller
      */
     public function show($tid, $page)
     {
-        dd(Auth::user());
         $threadModel = new Thread;
         $thread = $threadModel->find($tid);
         $posts = $thread->post()
