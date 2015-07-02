@@ -26,7 +26,7 @@
             </div>
             <div class="list-list-l">
               <h3>
-                <a href="thread-{{ $thread->tid }}-1-1.html">{{ $thread->subject }}</a>
+                <a href="{{ action('ThreadController@show', ['tid' => $thread->tid, 'page' => 1]) }}">{{ $thread->subject }}</a>
               </h3>
 
               <p>{{ $thread->message }}</p>
@@ -54,7 +54,7 @@
                 </ul>
               </div>
               <div class="forum-name">
-                <a href="hispage-{{ $thread->lastposterid }}-0-1.html" target="_blank" class="list-person">{{ $thread->lastposter }}</a>
+                <a href="{{ action('HispageController@index', ['uid' => $thread->lastposterid, 'page' => 1, 'typeid' => 0]) }}" target="_blank" class="list-person">{{ $thread->lastposter }}</a>
                 <p class="list-time"><span title="{{ $thread->lastpostdate }}">{{ $thread->lastpostdate }}</span></p>
               </div>
             </div>

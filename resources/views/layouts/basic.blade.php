@@ -53,12 +53,31 @@
     <div class="common-nav">
       <div class="common-nav-cont wrap">
         @if(Auth::check())
-          <div class="common-nav-unlog"><a href="{{ url('/auth/logout/') }}" target="_self" class="common-nav-login"><i></i>登出</a></div>
+          <div class="common-nav-loged">
+            <a href="/home.php?mod=space&do=profile" class="common-nav-user-icon"><span><img src="{{ Attach::avatar(Auth::user()->uid) }}"><i class="bg-loged-unread"></i></span></a>
+            <a href="/home.php?mod=space&do=profile" class="common-nav-user-name">{{ Auth::user()->username }}</a>
+            <i class="common-nav-triangle"></i>
+            <ul>
+              <li>
+                <a href="/home.php?mod=space&do=notice"><i class="common-nav-icon-notice"></i><span>我的通知</span><i class="common-nav-dot">2</i></a>
+              </li>
+              <li><a href="/home.php?mod=space&do=pm"><i class="common-nav-icon-msg"></i><span>我的纸条</span><i class="common-nav-dot">4</i></a></li>
+              <li>
+                <a href="member.php?mod=getpasswd" target="_self"><i class="common-nav-icon-lock"></i><span>修改密码</span></a>
+              </li>
+              <li>
+                <a href="home.php?mod=spacecp&ac=avatar" target="_self"><i class="common-nav-icon-img"></i><span>修改头像</span></a>
+              </li>
+              <li>
+                <a href="{{ url('/auth/logout/') }}" target="_self"><i class="common-nav-icon-exit"></i><span>退出账号</span></a>
+              </li>
+            </ul>
+          </div>
         @else
-          <div class="common-nav-unlog"><a href="{{ url('/auth/login/') }}" target="_self" class="common-nav-login" id="J-common-nav-btn-login" ><i></i>登录</a><a class="common-nav-reg" href="{{ url('/auth/register/') }}">注册</a></div>
+          <div class="common-nav-unlog"><a href="{{ url('/auth/login/') }}" target="_self" class="common-nav-login"><i></i>登录</a><a class="common-nav-reg" href="{{ url('/auth/register/') }}">注册</a></div>
         @endif
         <a href="/" target="_self" class="common-nav-logo"></a>
-        <div class="common-nav-menu"><a href="/" class="common-nav-index on" target="_self">首页</a><a href="/newforum-0-1.html" class="common-nav-qz" target="_self">圈子</a></i><a href="http://old.zeze.com/" target="_blank" class="common-nav-return">返回旧版</a></div>
+        <div class="common-nav-menu"><a href="{{ url('/home/') }}" class="common-nav-index on" target="_self">首页</a><a href="{{ url('/forum/') }}" class="common-nav-qz" target="_self">圈子</a></i></div>
         <form class="common-nav-search" id="scbar_form" method="post" autocomplete="off" action="search.php?mod=forum" target="_blank">
           <input type="hidden" name="mod" id="scbar_mod" value="forum" />
           <input type="hidden" name="formhash" value="c16192c8" />

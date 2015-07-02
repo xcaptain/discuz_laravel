@@ -1,4 +1,4 @@
-@extends('basic')
+@extends('layouts/basic')
 
 @section('contents')
 
