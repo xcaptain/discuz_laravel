@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User\Detail;
 use App\Models\Forum\Thread;
+use App\Helpers\Misc;
 
 class HispageController extends Controller
 {
@@ -23,6 +24,8 @@ class HispageController extends Controller
         $threadList = Thread::getThreadListByAuthor($uid, $typeid, $page);
         return view('hispage/index', [
             'threadList' => $threadList,
+            'userdetail' => $userdetail,
+            'uid'        => $uid,
         ]);
     }
 

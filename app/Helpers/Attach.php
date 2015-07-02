@@ -9,7 +9,6 @@ class Attach
 {
     /**
      * 获得圈子图标的绝对路径
-     *
      * @url: string
      * @return: string
      */
@@ -35,7 +34,6 @@ class Attach
 
     /**
      * 获得用户头像的绝对路径
-     *
      * @uid: int, 用户id
      * @size: string, 用户头像尺寸
      * @return: avatar, 用户头像链接

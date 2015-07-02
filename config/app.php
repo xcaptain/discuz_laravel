@@ -200,6 +200,7 @@ return [
         'BBCode'    => Golonka\BBCode\Facades\BBCodeParser::class,
         'Attach'    => App\Helpers\Attach::class,
         'Message'   => App\Helpers\Message::class,
+        'Misc'      => App\Helpers\Misc::class,
     ],
 
 ];
