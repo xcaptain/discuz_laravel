@@ -12,6 +12,7 @@ class Message
      */
     public static function parseReply($msg)
     {
+        \BBCode::setParser('colors', '/\[color=(\w+)\](.*?)\[\/color\]/', '<font color="$1">$2</font>');
         \BBCode::setParser('align', '/\[align=center\](.*?)\[\/align\]/s', '<div style="text-align:center;">$1</div>');
         return \BBCode::parse($msg);
     }

@@ -9,6 +9,7 @@ class Thread extends Model
 {
     protected $table = "dz_forum_thread";
     protected $primaryKey = "tid";
+    protected $hidden = ['created_at', 'updated_at'];
 
     /**
      * 获得帖子列表

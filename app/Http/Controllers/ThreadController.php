@@ -18,6 +18,7 @@ class ThreadController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth', ['except' => 'show']);
         $this->ppp = 20;
         Carbon::setLocale('zh'); //设置中文语言
         $this->now = Carbon::now();
@@ -40,7 +41,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('thread/create');
     }
 
     /**
@@ -48,9 +49,18 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $subject = $request->subject ? $request->subject : '';
+        $message = $request->message ? $request->message : '';
+        $author  = $request->user()->username;
+        $authorid= $request->user()->uid;
+
+        $thread = new Thread;
+        $thread->subject = $subject;
+        $thread->author  = $author;
+        $thread->authorid= $authorid;
+        $thread->save();
     }
 
     /**

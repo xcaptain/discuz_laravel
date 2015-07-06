@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index');
 Route::get('/thread-{tid}-{page}.html', 'ThreadController@show')
     ->where(['tid' => '^[1-9]\d*', 'page' => '^[1-9]\d*']);
+Route::get('/thread/new/', 'ThreadController@create');
+Route::post('/thread/new/', 'ThreadController@store');
+
 Route::get('/forum-{fid}-{page}.html', 'ForumController@show')
     ->where(['fid' => '[0-9]+', 'page' => '^[1-9]\d*']);
 Route::get('/hispage-{uid}-{typeid}-{page}.html', 'HispageController@index')
