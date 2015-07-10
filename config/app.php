@@ -148,6 +148,7 @@ return [
 
         Golonka\BBCode\BBCodeParserServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -201,6 +202,7 @@ return [
         'Attach'    => App\Helpers\Attach::class,
         'Message'   => App\Helpers\Message::class,
         'Misc'      => App\Helpers\Misc::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

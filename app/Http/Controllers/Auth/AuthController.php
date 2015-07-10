@@ -82,11 +82,16 @@ class AuthController extends Controller
         $passwordmd5 = preg_match('/^\w{32}$/', $password) ? $password : md5($password);
         $user = User::where('username', $username)->first();
         $passwordNew = md5($passwordmd5.$user->salt);
+        if ($_SERVER['HTTP_REFERER']) {
+            $urlForward = $_SERVER['HTTP_REFERER'];
+        } else {
+            $urlForward = '/home';
+        }
         if($passwordNew == $user->password) {
             Auth::loginUsingId($user->uid);
-            return redirect('/home');
+            return redirect($urlForward);
         } else {
-            dd('login failed');
+            return redirect('/auth/login/');
         }
     }
 

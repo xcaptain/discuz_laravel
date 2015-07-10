@@ -8,11 +8,7 @@
 @section('contents')
   <script src="http://cdn.wysibb.com/js/jquery.wysibb.min.js"></script>
   <div class="publish-wrap">
-    <form action="forum.php?mod=post&amp;action=newthread&amp;fid=52&amp;extra=&amp;topicsubmit=yes&amp;isjson=1" method="post" target="_self" id="postform">
-      <script>
-       var phpEditorImage = 1;
-       var phpIsEdit = 0;
-      </script>
+    <form action="{{ url('/thread/new') }}" method="post" target="_self" id="postform">
       <div class="publish-tab">
         <div class="pub-tab">
           <div class="pub-tab-box">
@@ -31,8 +27,8 @@
       <div id="append_parent"></div>
 
       <div class="publish-input-box">
-        <input type="hidden" name="formhash" id="formhash" value="86de8c05">
-        <input type="hidden" name="posttime" id="posttime" value="1436154289">
+        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+        <input type="hidden" name="posttime" id="posttime" value="{{ time() }}">
         <input type="hidden" name="wysiwyg" id="e_mode" value="1">
 
         <div class="pub-input-list">
@@ -49,15 +45,12 @@
            $("#editor").wysibb()
          })
         </script>
-        <textarea id="editor" name="editor_name">My text</textarea>
+        <textarea id="editor" name="message">请输入内容</textarea>
+        <button type="submit" class="btn btn-primary">添加</button>
     </form>
 
     <div class="friend-tishi">
       <span>*</span>友情提示：请不要发不健康言论，也不要发不文明照片，良好的环境需要你跟我们一起来努力哦！
     </div><!-- end friend-tishi -->
-    <div class="pub-btn-box">
-      <span class="pub-btn" id="J-btn-submit">发话题</span>
-      <span class="pub-cancel-btn" id="J-btn-cancel">取消</span>
-    </div>
   </div>
 @endsection
