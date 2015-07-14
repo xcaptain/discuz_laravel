@@ -52,13 +52,13 @@
         <div class="person-nav">
           <ul>
             <li{{ $typeid == 0 ? ' class=on' : '' }}>
-              <a href="{{ action('HispageController@index', ['uid' => $uid, 'page' => 1, 'typeid' => 0]) }}">
+              <a href="{{ action('HispageController@index', ['uid' => $uid, 'page' => 1, 'typeid' => 0]) }}" target="_self">
                 <i class="reply-icon"></i>
                 {{ $usersign }}参与的话题
               </a>
             </li>
             <li{{ $typeid == 1 ? ' class=on' : '' }}>
-              <a href="{{ action('HispageController@index', ['uid' => $uid, 'page' => 1, 'typeid' => 1]) }}">
+              <a href="{{ action('HispageController@index', ['uid' => $uid, 'page' => 1, 'typeid' => 1]) }}" target="_self">
                 <i class="topic-icon"></i>
                 {{ $usersign }}发表的话题
               </a>
@@ -144,7 +144,7 @@
 
         <div class="qz-new-join">
           <div class="qz-about-tit">
-            <h3 class="cir-name">{$usersign}关注的同学</h3>
+            <h3 class="cir-name">{{ $usersign }}关注的同学</h3>
             <!--{if !empty($userlist)}-->
             <a class="more-qz" href="follow-$uid-3-1.html" target="_blank">全部</a>
             <!--{/if}-->
