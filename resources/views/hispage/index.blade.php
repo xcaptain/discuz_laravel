@@ -106,30 +106,24 @@
                     </div>
                   </div>
                   <div class="list-time-before">
-                    12-09
+                    {{ Carbon::createFromTimestamp($thread->dateline) }}
                   </div>
                 </div>
               </div>
             </div><!-- end list-list -->
           @endforeach
         </div>
-
       </div><!-- end his-qz-l -->
 
       <div class="his-qz-right person-wrap grid-3">
-
         <div class="i-joined">
           <div class="joined-tit-box">
-            <h3 class="i-joined-tit">{$usersign}加入的圈子</h3>
-            <!--{if !empty($hisgroups)}-->
+            <h3 class="i-joined-tit">{{ $usersign }}加入的圈子</h3>
             <a class="more-qz" href="forumlist-$uid-0-1.html" target="_blank">更多</a>
-            <!--{/if}-->
           </div><!-- end joined-tit-box -->
-          <!--{if empty($hisgroups)}-->
           <div class="i-joined-box dis">
             <p class="no-onejoin">TA还一个圈子都没有加入~</p>
           </div>
-          <!--{else}-->
           <div class="i-joined-box dis">
             <!--{loop $hisgroups $fid $groupname}-->
             <div class="i-joined-li">

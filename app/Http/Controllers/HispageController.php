@@ -9,6 +9,7 @@ use App\Models\User\Detail;
 use App\Models\Forum\Thread;
 use App\Helpers\HForum;
 use App\Helpers\Misc;
+use Carbon;
 
 class HispageController extends Controller
 {
