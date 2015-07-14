@@ -50,6 +50,5 @@ class Forum extends Model
      */
     public function getForumsByUid($uid)
     {
-
     }
 }
