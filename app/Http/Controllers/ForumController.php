@@ -23,9 +23,19 @@ class ForumController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('forum/index');
+        $myForums = $allForums = [];
+        $user = $request->user();
+        if ($user) {
+            $myForums = Forum::getForumsByUid($user->uid);
+        }
+        $allForums = Forum::getAllForums();
+        return view('forum/index', [
+            'myForums'  => $myForums,
+            'allForums' => $allForums,
+            'user'      => $user,
+        ]);
     }
 
     /**

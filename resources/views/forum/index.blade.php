@@ -7,7 +7,9 @@
 @section('contents')
   <div class="qz-list-wrap">
 
-    @include('forum/myForums')
+    @if ($user)
+      @include('forum/myForums')
+    @endif
 
     @include('forum/allForums')
 

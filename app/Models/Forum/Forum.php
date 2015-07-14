@@ -8,9 +8,15 @@ use DB;
 
 class Forum extends Model
 {
-    protected $table = "dz_forum_forum";
-    protected $primaryKey = "fid";
+    public $table = "dz_forum_forum";
 
+    public $primaryKey = "fid";
+
+    /**
+     * 获得所有的圈子的信息，按照fid来索引
+     *
+     * @return: array
+     */
     public static function getForumInfo()
     {
         $f = "dz_forum_forum";
@@ -35,5 +41,15 @@ class Forum extends Model
     public function thread()
     {
         return $this->hasMany('App\Models\Forum\Thread', 'fid', 'fid');
+    }
+
+    /**
+     * 获得uid用户加入的圈子的信息
+     * @uid: int 用户id
+     * @return: Eloquent Object
+     */
+    public function getForumsByUid($uid)
+    {
+
     }
 }
