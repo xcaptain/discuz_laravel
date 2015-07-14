@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User\Detail;
 use App\Models\Forum\Thread;
+use App\Helpers\HForum;
 use App\Helpers\Misc;
 
 class HispageController extends Controller
@@ -20,76 +21,29 @@ class HispageController extends Controller
      */
     public function index($uid, $typeid, $page)
     {
-        $userdetail = Detail::find($uid);
+        $userdetail = Detail::profile($uid);
         $threadList = Thread::getThreadListByAuthor($uid, $typeid, $page);
+        $usersign   = $this->helpGetUserSign($userdetail->gender);
         return view('hispage/index', [
             'threadList' => $threadList,
             'userdetail' => $userdetail,
             'uid'        => $uid,
+            'usersign'   => $usersign,
+            'typeid'     => $typeid,
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
+     * 目前仅仅在他的首页用到这个函数，所以不做更高级的抽象
+     * @gender: int
+     * @return: string
      */
-    public function create()
+    private function helpGetUserSign($gender)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        if ($gender == 1) {
+            return '他';
+        } else {
+            return '她';
+        }
     }
 }

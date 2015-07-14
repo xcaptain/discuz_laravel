@@ -11,13 +11,13 @@ class Misc
      */
     public static function gender($gender)
     {
-        if($gender == 1) {
+        if ($gender == 1) {
             $sex = "boy";
-        } elseif($gender == 2) {
+        } elseif ($gender == 2) {
             $sex = "girl";
-        } elseif($gender == 3) {
+        } elseif ($gender == 3) {
             $sex = "wein";
-        } elseif($gender == 4) {
+        } elseif ($gender == 4) {
             $sex = "main";
         } else {
             $sex = "girl";
@@ -38,7 +38,7 @@ class Misc
             3 => 'lv3',
             4 => 'lv4',
         ];
-        if(isset($map[$groupid])) {
+        if (isset($map[$groupid])) {
             return $map[$groupid];
         } else {
             return 'lv0';

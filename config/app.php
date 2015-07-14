@@ -202,6 +202,7 @@ return [
         'Attach'    => App\Helpers\Attach::class,
         'Message'   => App\Helpers\Message::class,
         'Misc'      => App\Helpers\Misc::class,
+        'HForum'    => App\Helpers\HForum::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
     ],
 

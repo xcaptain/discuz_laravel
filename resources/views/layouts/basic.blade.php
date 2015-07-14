@@ -36,6 +36,9 @@
 
     @section('forumCss')
     @show
+
+    @section('hispageCss')
+    @show
   </head>
   <body id="nv_forum" class="pg_mypage" onkeydown="if(event.keyCode==27) return false;">
     <div class="right-share-box">
