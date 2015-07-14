@@ -37,7 +37,7 @@ class HomeController extends Controller
         $threadList = Thread::getThreadList($type, $page, $this->tpp);
 
         //该在列表中包含圈子名，避免复杂的联合查询
-        foreach($threadList as $k => $thread) {
+        foreach ($threadList as $k => $thread) {
             $thread->lastpostdate = $this->now->diffForHumans(Carbon::createFromTimeStamp($thread->lastpost));
         }
         return view('home/index', [

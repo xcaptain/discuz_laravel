@@ -89,7 +89,7 @@ class AuthController extends Controller
         $user = User::where('username', $username)->first();
         $passwordNew = md5($passwordmd5.$user->salt);
         $urlForward = $request->session()->get('urlForward');
-        if($passwordNew == $user->password) {
+        if ($passwordNew == $user->password) {
             Auth::loginUsingId($user->uid);
             return redirect($urlForward);
         } else {
@@ -102,7 +102,7 @@ class AuthController extends Controller
      */
     public function getLogout(Request $request)
     {
-        if(Auth::logout()) {
+        if (Auth::logout()) {
             redirect('/home');
         } else {
             dd('logout failed');

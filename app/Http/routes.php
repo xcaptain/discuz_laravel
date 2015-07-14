@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     if (Auth::user()) {
         return redirect('/home');
     } else {

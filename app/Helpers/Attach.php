@@ -15,7 +15,7 @@ class Attach
     public static function forumIconUrl($url)
     {
         $cdn = config('app.cdn');
-        if(strpos($url, 'http:') !== false) {
+        if (strpos($url, 'http:') !== false) {
             return $url;
         } else {
             return $cdn . '/attachment/common/' . $url;
@@ -25,7 +25,7 @@ class Attach
     public static function threadThumb($url)
     {
         $cdn = config('app.cdn');
-        if(strpos($url, 'http:') !== false) {
+        if (strpos($url, 'http:') !== false) {
             return $url;
         } else {
             return $cdn . '/attachment/forum/' . $url;
@@ -40,7 +40,7 @@ class Attach
      */
     public static function avatar($uid, $size = 'small')
     {
-        if(!in_array($size, ['small', 'middle', 'big'])) {
+        if (!in_array($size, ['small', 'middle', 'big'])) {
             $size = 'small';
         }
         $uid = sprintf("%09d", $uid);

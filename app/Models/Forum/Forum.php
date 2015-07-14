@@ -23,12 +23,12 @@ class Forum extends Model
         $ff = "dz_forum_forumfield";
         $key = "forumInfo";
         $data = Cache::get($key);
-        if(!$data) {
+        if (!$data) {
             $tmpData = DB::table($f)
                   ->join($ff, $f.'.fid', '=', $ff.'.fid')
                   ->select($f.'.fid', $f.'.name', $ff.'.icon')
                   ->get();
-            foreach($tmpData as $k => $v) {
+            foreach ($tmpData as $k => $v) {
                 $fid = $v->fid;
                 $v->icon = \Attach::forumIconUrl($v->icon);
                 $data[$fid] = $v;

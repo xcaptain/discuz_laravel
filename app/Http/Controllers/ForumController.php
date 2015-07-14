@@ -52,7 +52,7 @@ class ForumController extends Controller
                     ->where('displayorder', '>=', 0)
                     ->orderBy('tid', 'desc')
                     ->paginate($this->tpp);
-        foreach($threadList as $k => $thread) {
+        foreach ($threadList as $k => $thread) {
             $thread->lastpostdate = $this->now->diffForHumans(Carbon::createFromTimeStamp($thread->lastpost));
             $thread->thumb = Attachment::getThumbByTid($thread->tid, 4); //获得主帖缩略图
         }

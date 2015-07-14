@@ -77,7 +77,7 @@ class ThreadController extends Controller
                ->where('invisible', 0)
                ->orderBy('pid', 'asc')
                ->paginate($this->ppp);
-        foreach($posts as $k => $v) {
+        foreach ($posts as $k => $v) {
             $v->dateline = $this->now->diffForHumans(Carbon::createFromTimeStamp($v->dateline));
             $v->message = Message::parseReply($v->message);
         }
