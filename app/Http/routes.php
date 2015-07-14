@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    if (Auth::user()) {
+        return redirect('/home');
+    } else {
+        return redirect('/welcome');
+    }
 });
-
 Route::get('/home', 'HomeController@index');
 Route::get('/thread-{tid}-{page}.html', 'ThreadController@show')
     ->where(['tid' => '^[1-9]\d*', 'page' => '^[1-9]\d*']);
