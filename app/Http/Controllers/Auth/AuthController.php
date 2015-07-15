@@ -103,7 +103,7 @@ class AuthController extends Controller
     public function getLogout(Request $request)
     {
         if (Auth::logout()) {
-            redirect('/home');
+            return redirect('/home');
         } else {
             dd('logout failed');
         }
