@@ -11,6 +11,8 @@
 |
 */
 
+Carbon::setLocale(config('app.locale')); //设置中文语言
+
 Route::get('/', function () {
     if (Auth::user()) {
         return redirect('/home');

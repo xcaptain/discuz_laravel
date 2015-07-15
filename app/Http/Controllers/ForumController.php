@@ -13,6 +13,8 @@ class ForumController extends Controller
 {
     public function __construct()
     {
+        //Carbon::setLocale('zh');
+        dd(Carbon::parse('2015-05-11 00:00:00')->diffForHumans());
         $this->now = Carbon::now();
         $this->tpp = 20;
     }

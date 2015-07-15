@@ -33,11 +33,11 @@
             <div class="list-list-r">
               <div class="list-list-rt">
                 <div class="list-user">
-                  <a href="hispage-281198-1-1.html" title="{{ $thread->author }}">{{ $thread->author }}</a>
+                  <a href="{{ action('HispageController@index', ['uid' => $thread->authorid, 'page' => 1, 'typeid' => 0]) }}" title="{{ $thread->author }}">{{ $thread->author }}</a>
                 </div>
                 <div class="list-user-bottom">
                   <div class="list-user-lang">
-                    <a href="hispage-852016-0-1.html" target="_blank" title="{{ $thread->lastposter }}">{{ $thread->lastposter }}</a>
+                    <a href="{{ action('HispageController@index', ['uid' => $thread->authorid, 'page' => 1, 'typeid' => 0]) }}" target="_blank" title="{{ $thread->lastposter }}">{{ $thread->lastposter }}</a>
                   </div>
                   <div class="list-time-before">
                     <span title="{{ $thread->lastpostdate }}">{{ $thread->lastpostdate }}</span>
