@@ -24,6 +24,7 @@ class ForumController extends Controller
      */
     public function index(Request $request)
     {
+        eval(\Psy\sh());
         $myForums = $allForums = [];
         $user = $request->user();
         if ($user) {

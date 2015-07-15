@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index');
-
+Route::get('/welcome', 'WelcomeController@index');
 
 Route::get('/thread-{tid}-{page}.html', 'ThreadController@show')
     ->where(['tid' => '^[1-9]\d*', 'page' => '^[1-9]\d*']);
