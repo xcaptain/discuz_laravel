@@ -149,7 +149,7 @@ return [
         Golonka\BBCode\BBCodeParserServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -206,6 +206,8 @@ return [
         'HForum'    => App\Helpers\HForum::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Carbon'    => Carbon\Carbon::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
     ],
 
 ];

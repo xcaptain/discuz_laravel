@@ -39,7 +39,7 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('thread/create');
     }
@@ -57,10 +57,12 @@ class ThreadController extends Controller
         $authorid= $request->user()->uid;
 
         $thread = new Thread;
-        $thread->subject = $subject;
-        $thread->author  = $author;
-        $thread->authorid= $authorid;
-        $thread->save();
+        $t = ['subject'  => $subject,
+              'author'   => $author,
+              'authorid' => $authorid,
+              'message'  => $message,
+        ];
+        $thread->newThread($t);
     }
 
     /**

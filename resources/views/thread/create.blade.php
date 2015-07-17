@@ -8,7 +8,7 @@
 @section('contents')
   <script src="http://cdn.wysibb.com/js/jquery.wysibb.min.js"></script>
   <div class="publish-wrap">
-    <form action="{{ url('/thread/new') }}" method="post" target="_self" id="postform">
+    {!! Form::open(['url' => '/thread/new', 'method' => 'post', 'id' => 'postform', 'target' => '_self']) !!}
       <div class="publish-tab">
         <div class="pub-tab">
           <div class="pub-tab-box">
@@ -27,16 +27,16 @@
       <div id="append_parent"></div>
 
       <div class="publish-input-box">
-        <input name="_token" type="hidden" value="{{ csrf_token() }}">
-        <input type="hidden" name="posttime" id="posttime" value="{{ time() }}">
-        <input type="hidden" name="wysiwyg" id="e_mode" value="1">
+        {!! Form::token() !!}
+        {!! Form::hidden('posttime', time(), ['id' => 'posttime']) !!}
+        {!! Form::hidden('wysiwyg', '1', ['id' => 'e_mode']) !!}
 
         <div class="pub-input-list">
           <div class="pub-input-left">
             <span class="pub-inp-name">标题</span>
           </div>
           <div class="pub-input-right pub-inp-title">
-            <input placeholder="不少于5个字" type="text" id="J-form-tiezi-title" name="subject">
+            {!! Form::text('subject', '', ['id' => 'J-form-tiezi-title', 'placeholder' => '不少于5个字']) !!}
             <p class="pub-input-error-msg">不少于5个字</p>
           </div>
         </div>
@@ -45,9 +45,10 @@
            $("#editor").wysibb()
          })
         </script>
-        <textarea id="editor" name="message">请输入内容</textarea>
-        <button type="submit" class="btn btn-primary">添加</button>
-    </form>
+        {!! Form::textarea('message', '', ['id' => 'editor']) !!}
+        {!! Form::submit('发表', ['class' => 'btn btn-primary']) !!}
+      </div>
+    {!! Form::close() !!}
 
     <div class="friend-tishi">
       <span>*</span>友情提示：请不要发不健康言论，也不要发不文明照片，良好的环境需要你跟我们一起来努力哦！

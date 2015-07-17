@@ -91,4 +91,12 @@ class Thread extends Model
         }
         return $threadList;
     }
+
+    /**
+     * 发新帖的表单提交
+     */
+    public function newThread(array $t)
+    {
+        $this->save();
+    }
 }
