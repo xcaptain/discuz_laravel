@@ -98,6 +98,25 @@ class AuthController extends Controller
     }
 
     /**
+     * 登录页
+     */
+    public function getRegister()
+    {
+        return view('auth/register');
+    }
+
+    /**
+     * 提交注册表单
+     */
+    public function postRegister(Request $request)
+    {
+        $data = $request->only(
+            ['username', 'email', 'password', 'password2']
+        );
+        $this->validator($data);
+    }
+
+    /**
      * 登出用户
      */
     public function getLogout(Request $request)

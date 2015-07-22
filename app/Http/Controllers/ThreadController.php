@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Forum\Thread;
+use App\Repositories\ThreadRepository;
 use Carbon\Carbon;
 use App\Helpers\Message;
 
@@ -16,12 +16,13 @@ class ThreadController extends Controller
      * 公共配置
      * @ppp: 每页显示楼层数, int
      */
-    public function __construct()
+    public function __construct(ThreadRepository $thread)
     {
         $this->middleware('auth', ['except' => 'show']);
         $this->ppp = 20;
         Carbon::setLocale('zh'); //设置中文语言
         $this->now = Carbon::now();
+        $this->thread = $thread;
     }
 
     /**

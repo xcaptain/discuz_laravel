@@ -26,7 +26,7 @@
     <meta name="msapplication-task" content="name=论坛;action-uri=http://www.zeze.com/forum.php;icon-uri=http://www.zeze.com/http://www.7k7kjs.cn/zeze/static/image/common/bbs.ico" />
     <link rel="archives" title="ZEZE!啧啧" href="http://www.zeze.com/archiver/" />
     <!-- <script src="static/js/forum.js?kQA" type="text/javascript"></script> -->
-    <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/common-debug.css">
+    <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.3.2/css/common-debug.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     @section('indexCss')
     @show
@@ -41,6 +41,9 @@
     @show
 
     @section('forumListCss')
+    @show
+
+    @section('registerCss')
     @show
 
   </head>
