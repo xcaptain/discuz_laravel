@@ -88,7 +88,7 @@
           <div class="common-nav-unlog"><a href="{{ url('/auth/login/') }}" target="_self" class="common-nav-login"><i></i>登录</a><a class="common-nav-reg" href="{{ url('/auth/register/') }}">注册</a></div>
         @endif
         <a href="/" target="_self" class="common-nav-logo"></a>
-        <div class="common-nav-menu"><a href="{{ url('/home/') }}" class="common-nav-index on" target="_self">首页</a><a href="{{ url('/forum/') }}" class="common-nav-qz" target="_self">圈子</a></i></div>
+        <div class="common-nav-menu"><a href="{{ url('/home/') }}" class="common-nav-index on" target="_self">首页</a><a href="{{ url('/home/') }}" class="common-nav-qz" target="_self">圈子</a></i></div>
         <form class="common-nav-search" id="scbar_form" method="post" autocomplete="off" action="search.php?mod=forum" target="_blank">
           <input type="hidden" name="mod" id="scbar_mod" value="forum" />
           <input type="hidden" name="formhash" value="c16192c8" />

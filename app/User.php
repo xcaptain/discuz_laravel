@@ -23,11 +23,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $primaryKey = 'uid';
 
     /**
+     * 禁止在insert操作的时候更新updated_at和created_at
+     */
+    public $timestamps = false;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    //protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'username', 'email', 'password',
+        'salt', 'regip', 'regdate',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

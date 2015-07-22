@@ -9,7 +9,6 @@ use Illuminate\Container\Container as App;
 
 abstract class Repository implements RepositoryInterface
 {
-
     private $app;
 
     protected $model;

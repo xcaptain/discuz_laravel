@@ -11,6 +11,15 @@ class Detail extends Model
 
     protected $primaryKey = 'uid';
 
+    public $timestamps = false;
+
+    public $rememberToken = false;
+
+    protected $fillable = [
+        'uid', 'username', 'email', 'password',
+        'groupid', 'regdate',
+    ];
+
     /**
      * 获得用户的详细信息
      *
