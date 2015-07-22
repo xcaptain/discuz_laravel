@@ -20,7 +20,7 @@ class Attachment extends Model
      * @tid: int, 帖子id
      * @num: int, 最大返回图片数量
      */
-    public function getThumbByTid($tid, $num = 5)
+    public static function getThumbByTid($tid, $num = 5)
     {
         $a = "dz_forum_attachment";
         $n = (int)$tid % 10;
