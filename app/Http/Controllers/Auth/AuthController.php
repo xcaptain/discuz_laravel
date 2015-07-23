@@ -130,6 +130,7 @@ class AuthController extends Controller
         // 表单验证
         // 写入操作
         $data['salt'] = rand(100000, 999999);
+        // TODO: 这里要使用transcation而不能顺序insert
         $this->create($data);
     }
 
