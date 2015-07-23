@@ -1,24 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models\User;
 
 use DB;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User extends Model
 {
-    use Authenticatable, CanResetPassword;
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'dz_ucenter_members';
+    protected $table = 'dz_common_member';
 
     protected $primaryKey = 'uid';
 
@@ -33,8 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
-        'salt', 'regip', 'regdate',
+        'uid', 'username', 'email', 'password', 'phone'
     ];
 
     /**
@@ -44,4 +37,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     //protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * 通过用户名来获得用户信息，尤其是 ucenter 中记录的密码
+     */
+    public function getUserByUsername($username)
+    {
+        //
+    }
+
+    public function getUserDetail($uid)
+    {
+        return $this->find($uid);
+    }
+
+    public function detail()
+    {
+        return $this->hasOne('App\Models\User\Detail', 'uid', 'uid');
+    }
 }

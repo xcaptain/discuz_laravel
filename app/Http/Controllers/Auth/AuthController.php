@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use App\User;
+//use App\Models\User\Detail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -57,10 +59,22 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $now = Carbon::now()->timestamp;
+        $uc = User::create([
+            'username' => $data['username'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => md5(md5($data['password']).$data['salt']),
+            'salt' => $data['salt'],
+            'regdate' => $now,
+            'regip' => $_SERVER['REMOTE_ADDR'],
+        ]);
+        Detail::create([
+            'uid' => $uc->uid,
+            'username' => $uc->username,
+            'email' => $uc->email,
+            'password' => md5($uc->username),
+            'groupid' => 10,
+            'regdate' => $uc->regdate,
         ]);
     }
 
@@ -98,14 +112,34 @@ class AuthController extends Controller
     }
 
     /**
+     * 登录页
+     */
+    public function getRegister()
+    {
+        return view('auth/register');
+    }
+
+    /**
+     * 提交注册表单
+     */
+    public function postRegister(Request $request)
+    {
+        $data = $request->only(
+            ['username', 'email', 'password', 'password2']
+        );
+        // 表单验证
+        // 写入操作
+        $data['salt'] = rand(100000, 999999);
+        // TODO: 这里要使用transcation而不能顺序insert
+        $this->create($data);
+    }
+
+    /**
      * 登出用户
      */
     public function getLogout(Request $request)
     {
-        if (Auth::logout()) {
-            return redirect('/home');
-        } else {
-            dd('logout failed');
-        }
+        Auth::logout();
+        return redirect('/welcome');
     }
 }

@@ -7,9 +7,18 @@ use DB;
 
 class Detail extends Model
 {
-    protected $table = 'dz_common_member';
+    protected $table = 'dz_common_member_profile';
 
     protected $primaryKey = 'uid';
+
+    public $timestamps = false;
+
+    public $rememberToken = false;
+
+    protected $fillable = [
+        'uid', 'username', 'email', 'password',
+        'groupid', 'regdate',
+    ];
 
     /**
      * 获得用户的详细信息

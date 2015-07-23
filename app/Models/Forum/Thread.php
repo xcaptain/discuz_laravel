@@ -24,7 +24,7 @@ class Thread extends Model
      * @page: 当前页码, int, >= 1
      * @tpp:  每页帖子数, int
      */
-    public static function getThreadList($type, $page, $tpp)
+    public function getThreadList($type, $page, $tpp)
     {
         $offset = ($page - 1) * $tpp;
         if ($type == 'all') { //所有帖子按时间先后倒序

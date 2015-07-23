@@ -20,7 +20,7 @@
             <div class="person-user-r">
               <div class="name-box">
                 <a href="javascript:;">{{ $userdetail->username }}</a>
-                <span class="user-sex user-sex-{{ Misc::gender($userdetail->gender) }}"></span>
+                <span class="user-sex user-sex-{{ Misc::gender($userdetail->detail->gender) }}"></span>
                 <span class="user-crown-img {{ Misc::level($userdetail->groupid) }}"></span>
               </div>
               <div class="user-lever">
