@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\User\Detail;
-use App\Models\Forum\Thread;
+//use App\Models\User\Detail;
+use App\Repositories\UserRepository as User;
+//use App\Models\Forum\Thread;
+use App\Repositories\ThreadRepository as Thread;
 use App\Helpers\HForum;
 use App\Helpers\Misc;
 use Carbon;
@@ -15,6 +17,16 @@ class HispageController extends Controller
 {
     private $tpp = 20;
 
+    private $user;
+
+    private $thread;
+
+    public function __construct(User $user, Thread $thread)
+    {
+        $this->user = $user;
+        $this->thread = $thread;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +34,9 @@ class HispageController extends Controller
      */
     public function index($uid, $typeid, $page)
     {
-        $userdetail = Detail::profile($uid);
-        $threadList = Thread::getThreadListByAuthor($uid, $typeid, $page);
+        //$userdetail = Detail::profile($uid);
+        $userdetail = $this->user->getUserDetail($uid);
+        $threadList = $this->thread->getThreadListByAuthor($uid, $typeid, $page);
         $usersign   = $this->helpGetUserSign($userdetail->gender);
         return view('hispage/index', [
             'threadList' => $threadList,

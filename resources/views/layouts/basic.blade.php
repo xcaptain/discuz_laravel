@@ -26,7 +26,7 @@
     <meta name="msapplication-task" content="name=论坛;action-uri=http://www.zeze.com/forum.php;icon-uri=http://www.zeze.com/http://www.7k7kjs.cn/zeze/static/image/common/bbs.ico" />
     <link rel="archives" title="ZEZE!啧啧" href="http://www.zeze.com/archiver/" />
     <!-- <script src="static/js/forum.js?kQA" type="text/javascript"></script> -->
-    <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/common-debug.css">
+    <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.3.2/css/common-debug.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     @section('indexCss')
     @show
@@ -41,6 +41,9 @@
     @show
 
     @section('forumListCss')
+    @show
+
+    @section('registerCss')
     @show
 
   </head>
@@ -85,7 +88,7 @@
           <div class="common-nav-unlog"><a href="{{ url('/auth/login/') }}" target="_self" class="common-nav-login"><i></i>登录</a><a class="common-nav-reg" href="{{ url('/auth/register/') }}">注册</a></div>
         @endif
         <a href="/" target="_self" class="common-nav-logo"></a>
-        <div class="common-nav-menu"><a href="{{ url('/home/') }}" class="common-nav-index on" target="_self">首页</a><a href="{{ url('/forum/') }}" class="common-nav-qz" target="_self">圈子</a></i></div>
+        <div class="common-nav-menu"><a href="{{ url('/home/') }}" class="common-nav-index on" target="_self">首页</a><a href="{{ url('/home/') }}" class="common-nav-qz" target="_self">圈子</a></i></div>
         <form class="common-nav-search" id="scbar_form" method="post" autocomplete="off" action="search.php?mod=forum" target="_blank">
           <input type="hidden" name="mod" id="scbar_mod" value="forum" />
           <input type="hidden" name="formhash" value="c16192c8" />
