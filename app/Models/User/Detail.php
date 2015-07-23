@@ -7,7 +7,7 @@ use DB;
 
 class Detail extends Model
 {
-    protected $table = 'dz_common_member';
+    protected $table = 'dz_common_member_profile';
 
     protected $primaryKey = 'uid';
 

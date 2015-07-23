@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "55f099aaec0bc68808a0faa9b084ace9",
+    "hash": "17f8fb0323325d1761415b6418c41fb6",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -116,16 +116,16 @@
         },
         {
             "name": "danielstjules/stringy",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "3cf18e9e424a6dedc38b7eb7ef580edb0929461b"
+                "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/3cf18e9e424a6dedc38b7eb7ef580edb0929461b",
-                "reference": "3cf18e9e424a6dedc38b7eb7ef580edb0929461b",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
+                "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2015-02-10 06:19:18"
+            "time": "2015-07-23 00:54:12"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -545,16 +545,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.1.2",
+            "version": "v5.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "c93974c835aebd1fc49d4aa897b30dd507b08a62"
+                "reference": "fb7693cf4b582fc5908ff44ea888afea066ac93a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/c93974c835aebd1fc49d4aa897b30dd507b08a62",
-                "reference": "c93974c835aebd1fc49d4aa897b30dd507b08a62",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/fb7693cf4b582fc5908ff44ea888afea066ac93a",
+                "reference": "fb7693cf4b582fc5908ff44ea888afea066ac93a",
                 "shasum": ""
             },
             "require": {
@@ -591,7 +591,7 @@
                     "email": "adam@laravelcollective.com"
                 }
             ],
-            "time": "2015-07-11 09:34:06"
+            "time": "2015-07-22 21:00:12"
         },
         {
             "name": "league/flysystem",
@@ -1856,6 +1856,53 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "bosnadev/repositories",
+            "version": "0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bosnadev/Repositories.git",
+                "reference": "c4eb564902a58bdbb8047f09da591f6177c39c6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bosnadev/Repositories/zipball/c4eb564902a58bdbb8047f09da591f6177c39c6a",
+                "reference": "c4eb564902a58bdbb8047f09da591f6177c39c6a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bosnadev\\Repositories\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Mirza Pasic",
+                    "email": "mirza.pasic@edu.fit.ba"
+                }
+            ],
+            "description": "Laravel Repositories",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "repositories",
+                "repository"
+            ],
+            "time": "2015-04-20 12:10:57"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",

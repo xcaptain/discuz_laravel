@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Forum\Thread;
+//use App\Models\Forum\Thread;
+use App\Repositories\ThreadRepository as Thread;
 use App\Models\Forum\Forum;
 use Carbon\Carbon;
+use App\User;
 
 class HomeController extends Controller
 {
+    private $thread;
+
     /**
      * 初始化控制器配置
      * @tpp: 每页显示帖子数
      */
-    public function __construct()
+    public function __construct(Thread $thread)
     {
         $this->middleware('auth'); //设置必须登录才能访问
+        $this->thread = $thread;
         $this->tpp = 20;
         $this->now = Carbon::now();
         $this->forumInfo = Forum::getForumInfo();
@@ -32,7 +37,17 @@ class HomeController extends Controller
     {
         $type = $request->get('type') ? $request->get('type') : 'all';
         $page = $request->get('page') ? $request->get('page') : 1;
-        $threadList = Thread::getThreadList($type, $page, $this->tpp);
+        //$threadList = Thread::getThreadList($type, $page, $this->tpp);
+        $threadList = $this->thread->getThreadList($type, $page, $this->tpp);
+        $user = new User;
+        $oneUser = $user->getUserDetail(231);
+
+        $dt = [
+            'name' => $oneUser->username,
+            'nick' => $oneUser->detail->field1,
+            'gender' => $oneUser->detail->gender,
+        ];
+        dd($dt);
 
         //该在列表中包含圈子名，避免复杂的联合查询
         foreach ($threadList as $k => $thread) {
