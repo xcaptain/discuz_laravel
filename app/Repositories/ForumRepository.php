@@ -19,4 +19,14 @@ class ForumRepository extends Repository
     {
         return $this->model->getForumInfo();
     }
+
+    public function getForumsByUid($uid)
+    {
+        return $this->model->getForumsByUid($uid);
+    }
+
+    public function getAllForums()
+    {
+        return $this->model->getAllForums();
+    }
 }

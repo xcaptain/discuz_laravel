@@ -38,4 +38,9 @@ class Attachment extends Model
     {
         //
     }
+
+    public function attachmentn()
+    {
+        return $this->hasOne('App\Models\Forum\AttachmentN', 'aid', 'aid');
+    }
 }

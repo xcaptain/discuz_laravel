@@ -6,15 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use App\Models\Forum\Forum;
-use App\Models\Forum\Attachment;
+use App\Repositories\ForumRepository as Forum;
+use App\Repositories\AttachmentRepository as Attachment;
 
 class ForumController extends Controller
 {
-    public function __construct()
+    public function __construct(
+        Request $request,
+        Forum $forum,
+        Attachment $attachment
+    )
     {
         $this->now = Carbon::now();
         $this->tpp = 20;
+        $this->request = $request;
+        $this->forum = $forum;
+        $this->attachment = $attachment;
     }
 
     /**
@@ -22,15 +29,14 @@ class ForumController extends Controller
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        eval(\Psy\sh());
         $myForums = $allForums = [];
-        $user = $request->user();
+        $user = $this->request->user;
         if ($user) {
-            $myForums = Forum::getForumsByUid($user->uid);
+            $myForums = $this->forum->getForumsByUid($user->uid);
         }
-        $allForums = Forum::getAllForums();
+        $allForums = $this->forum->getAllForums();
         return view('forum/index', [
             'myForums'  => $myForums,
             'allForums' => $allForums,
@@ -46,15 +52,14 @@ class ForumController extends Controller
      */
     public function show($fid, $page)
     {
-        $forumModel = new Forum;
-        $threadList = $forumModel->find($fid)
-                    ->thread()
-                    ->where('displayorder', '>=', 0)
-                    ->orderBy('tid', 'desc')
-                    ->paginate($this->tpp);
+        $threadList = $this->forum->find($fid)
+            ->thread()
+            ->where('displayorder', '>=', 0)
+            ->orderBy('tid', 'desc')
+            ->paginate($this->tpp);
         foreach ($threadList as $k => $thread) {
             $thread->lastpostdate = $this->now->diffForHumans(Carbon::createFromTimeStamp($thread->lastpost));
-            $thread->thumb = Attachment::getThumbByTid($thread->tid, 4); //获得主帖缩略图
+            $thread->thumb = $this->attachment->getThumbByTid($thread->tid, 4);
         }
         return view('forum/show', [
             'now' => $this->now,
