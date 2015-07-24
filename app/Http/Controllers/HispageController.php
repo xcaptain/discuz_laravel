@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-//use App\Models\User\Detail;
 use App\Repositories\UserRepository as User;
-//use App\Models\Forum\Thread;
 use App\Repositories\ThreadRepository as Thread;
 use App\Helpers\HForum;
 use App\Helpers\Misc;
@@ -34,7 +32,6 @@ class HispageController extends Controller
      */
     public function index($uid, $typeid, $page)
     {
-        //$userdetail = Detail::profile($uid);
         $userdetail = $this->user->getUserDetail($uid);
         $threadList = $this->thread->getThreadListByAuthor($uid, $typeid, $page);
         $usersign   = $this->helpGetUserSign($userdetail->gender);

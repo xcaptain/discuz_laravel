@@ -71,6 +71,11 @@ class Thread extends Model
         return $this->belongsTo('App\Models\Forum\Forum', 'fid', 'fid');
     }
 
+    public function attachment()
+    {
+        return $this->hasMany('App\Models\Forum\Attachment', 'tid', 'tid');
+    }
+
     /**
      * 获得用户发表或回复过的帖子
      * @uid: 作者id

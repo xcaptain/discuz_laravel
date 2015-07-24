@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
-//use App\Models\Forum\Thread;
-use App\Models\Forum\Forum;
 use Carbon\Carbon;
 use App\Repositories\ThreadRepository as Thread;
+use App\Repositories\ForumRepository as Forum;
 
 class WelcomeController extends Controller
 {
     private $thread;
 
-    public function __construct(Thread $thread)
+    public function __construct(Thread $thread, Forum $forum)
     {
         $this->middleware('guest');
         $this->thread = $thread;
+        $this->forum = $forum;
         $this->tpp = 20;
         $this->now = Carbon::now();
-        $this->forumInfo = Forum::getForumInfo();
+        $this->forumInfo = $this->forum->getForumInfo();
     }
 
     /**
