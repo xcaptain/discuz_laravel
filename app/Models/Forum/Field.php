@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Field extends Model
 {
-    protected $table = "dz_forum_forumfield";
+    public $table = "dz_forum_forumfield";
 
-    protected $primaryKey = "fid";
+    public $primaryKey = "fid";
 
 }
