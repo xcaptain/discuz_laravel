@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use Auth;
 use App\User;
-//use App\Models\User\Detail;
+use App\Repositories\UserRepository;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -31,9 +32,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $user)
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+        $this->user = $user;
     }
 
     /**
@@ -59,23 +61,28 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $now = Carbon::now()->timestamp;
-        $uc = User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => md5(md5($data['password']).$data['salt']),
-            'salt' => $data['salt'],
-            'regdate' => $now,
-            'regip' => $_SERVER['REMOTE_ADDR'],
-        ]);
-        Detail::create([
-            'uid' => $uc->uid,
-            'username' => $uc->username,
-            'email' => $uc->email,
-            'password' => md5($uc->username),
-            'groupid' => 10,
-            'regdate' => $uc->regdate,
-        ]);
+        DB::transaction(function () use ($data) {
+                $now = Carbon::now()->timestamp;
+                $uc = User::create([
+                    'username' => $data['username'],
+                    'email' => $data['email'],
+                    'password' => md5(md5($data['password']).$data['salt']),
+                    'salt' => $data['salt'],
+                    'regdate' => $now,
+                    'regip' => $_SERVER['REMOTE_ADDR'],
+                ]);
+                $member = $this->user->create([
+                    'uid' => $uc->uid,
+                    'username' => $uc->username,
+                    'email' => $uc->email,
+                    'password' => md5($data['username']),
+                    'groupid' => 10,
+                    'regdate' => $uc->regdate,
+                ]);
+                $member->detail()->create([
+                    'uid' => $uc->uid,
+                ]);
+            });
     }
 
     /**
@@ -125,13 +132,11 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         $data = $request->only(
-            ['username', 'email', 'password', 'password2']
+            ['username', 'email', 'password']
         );
-        // 表单验证
-        // 写入操作
         $data['salt'] = rand(100000, 999999);
-        // TODO: 这里要使用transcation而不能顺序insert
         $this->create($data);
+        return redirect('/auth/login/');
     }
 
     /**

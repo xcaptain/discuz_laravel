@@ -19,22 +19,22 @@ class Forum extends Model
      */
     public function getForumInfo()
     {
-        $f = "dz_forum_forum";
-        $ff = "dz_forum_forumfield";
         $key = "forumInfo";
-        $data = Cache::get($key);
-        if (!$data) {
+        $data = Cache::remember($key, config('cache.forumttl'), function () {
+            $f = "dz_forum_forum";
+            $ff = "dz_forum_forumfield";
+            $key = "forumInfo";
             $tmpData = DB::table($f)
-                  ->join($ff, $f.'.fid', '=', $ff.'.fid')
-                  ->select($f.'.fid', $f.'.name', $ff.'.icon')
-                  ->get();
+                ->join($ff, $f.'.fid', '=', $ff.'.fid')
+                ->select($f.'.fid', $f.'.name', $ff.'.icon')
+                ->get();
             foreach ($tmpData as $k => $v) {
                 $fid = $v->fid;
                 $v->icon = \Attach::forumIconUrl($v->icon);
                 $data[$fid] = $v;
             }
-            Cache::put($key, $data, config('cache.forumttl'));
-        }
+            return $data;
+        });
         return $data;
     }
 

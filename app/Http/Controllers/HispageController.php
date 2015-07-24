@@ -32,7 +32,6 @@ class HispageController extends Controller
      */
     public function index($uid, $typeid, $page)
     {
-        //$userdetail = Detail::profile($uid);
         $userdetail = $this->user->getUserDetail($uid);
         $threadList = $this->thread->getThreadListByAuthor($uid, $typeid, $page);
         $usersign   = $this->helpGetUserSign($userdetail->gender);

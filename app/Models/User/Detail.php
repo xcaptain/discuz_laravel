@@ -16,8 +16,7 @@ class Detail extends Model
     public $rememberToken = false;
 
     protected $fillable = [
-        'uid', 'username', 'email', 'password',
-        'groupid', 'regdate',
+        'uid',
     ];
 
     /**
