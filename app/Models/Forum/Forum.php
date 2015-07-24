@@ -17,7 +17,7 @@ class Forum extends Model
      *
      * @return: array
      */
-    public static function getForumInfo()
+    public function getForumInfo()
     {
         $f = "dz_forum_forum";
         $ff = "dz_forum_forumfield";
@@ -36,6 +36,14 @@ class Forum extends Model
             Cache::put($key, $data, config('cache.forumttl'));
         }
         return $data;
+    }
+
+    /**
+     * dz_forum_forum 中的1行，对应 dz_forum_forumfield中1行
+     */
+    public function forumfield()
+    {
+        return $this->belongsTo('App\Models\Forum\Field', 'fid', 'fid');
     }
 
     public function thread()
