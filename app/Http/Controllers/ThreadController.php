@@ -74,8 +74,7 @@ class ThreadController extends Controller
      */
     public function show($tid, $page)
     {
-        $threadModel = new Thread;
-        $thread = $threadModel->find($tid);
+        $thread = $this->thread->find($tid);
         $posts = $thread->post()
                ->where('invisible', 0)
                ->orderBy('pid', 'asc')
