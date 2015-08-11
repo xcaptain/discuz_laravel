@@ -33,6 +33,7 @@ class HispageController extends Controller
     public function index($uid, $typeid, $page)
     {
         $userdetail = $this->user->getUserDetail($uid);
+        dd($userdetail);
         $threadList = $this->thread->getThreadListByAuthor($uid, $typeid, $page);
         $usersign   = $this->helpGetUserSign($userdetail->gender);
         return view('hispage/index', [

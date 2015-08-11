@@ -150,6 +150,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        //Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider::class,
     ],
 
     /*

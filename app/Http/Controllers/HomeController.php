@@ -28,6 +28,7 @@ class HomeController extends Controller
         $this->forumInfo = $this->forum->getForumInfo();
     }
 
+
     /**
      * Display a listing of the resource.
      *
