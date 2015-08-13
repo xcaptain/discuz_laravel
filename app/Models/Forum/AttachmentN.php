@@ -21,11 +21,6 @@ class AttachmentN extends Model
         $this->table = 'dz_forum_attachment_'.$this->tableid;
     }
 
-    public function test()
-    {
-        return $this->tid;
-    }
-
     public function attachment()
     {
         return $this->hasOne('App\Models\Forum\AttachmentN', 'aid', 'aid');
