@@ -14,10 +14,11 @@ class Forum extends Model
 
     /**
      * 获得所有的圈子的信息，按照fid来索引
+     * TODO: 在Model里面写Query是不合适的写法，得重构
      *
      * @return: array
      */
-    public function getForumInfo()
+    public static function getForumInfo()
     {
         $key = "forumInfo";
         $data = Cache::remember($key, config('cache.forumttl'), function () {

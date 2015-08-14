@@ -53,7 +53,7 @@ class User extends Model
      */
     public function getUserDetail($uid)
     {
-        return $this->find($uid)->with('detail')->get();
+        return $this->find($uid);
     }
 
     public function detail()
