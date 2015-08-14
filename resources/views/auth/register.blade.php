@@ -1,7 +1,7 @@
 @extends('layouts/basic')
 
 @section('registerCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.3.2/css/register-new-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/register-new-debug.css">
 @endsection
 
 @section('contents')
@@ -28,7 +28,7 @@
 
     <div class="register-main">
 
-      @include('auth/register_form')
+      @include('auth/_register_form')
 
       <div class="right">
         <div class="qq-box">

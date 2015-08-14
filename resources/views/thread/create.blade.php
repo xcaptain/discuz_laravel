@@ -1,7 +1,7 @@
 @extends('layouts/basic')
 
 @section('threadCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.1.3/css/fabiao-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/fabiao-debug.css">
   <link rel="stylesheet" href="http://cdn.wysibb.com/css/default/wbbtheme.css" />
 @endsection
 

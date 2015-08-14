@@ -1,7 +1,7 @@
 @extends('layouts/basic')
 
 @section('forumCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/quanzi-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/quanzi-debug.css">
 @endsection
 
 @section('contents')
@@ -10,7 +10,7 @@
   <div class="qz-index-main content-grid">
     <div class="zhuti-list-box grid-7" id="J-tiezi-list">
 
-      @include('forum/typeBar')
+      @include('forum/_show_typeBar')
 
       @foreach($threadList as $k => $thread)
         <div class="list-top-area">

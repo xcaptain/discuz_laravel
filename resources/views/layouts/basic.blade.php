@@ -28,23 +28,19 @@
     <!-- <script src="static/js/forum.js?kQA" type="text/javascript"></script> -->
     <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.3.2/css/common-debug.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    @section('indexCss')
-    @show
+    @yield('indexCss')
 
-    @section('threadCss')
-    @show
+    @yield('threadCss')
 
-    @section('forumCss')
-    @show
+    @yield('forumCss')
 
-    @section('hispageCss')
-    @show
+    @yield('hispageCss')
 
-    @section('forumListCss')
-    @show
+    @yield('forumListCss')
 
-    @section('registerCss')
-    @show
+    @yield('registerCss')
+
+    @yield('loginCss')
 
   </head>
   <body id="nv_forum" class="pg_mypage" onkeydown="if(event.keyCode==27) return false;">
@@ -102,10 +98,10 @@
       </div>
     </div><!-- 头部导航栏 -->
 
-      @yield('contents')
+    @yield('contents')
 
-      <div class="foot-copybox">
-        <div class="copyright">Copyright &copy; 2014 ZEZE啧啧社区</div>
-      </div>
+    <div class="foot-copybox">
+      <div class="copyright">Copyright &copy; 2014 ZEZE啧啧社区</div>
+    </div>
 
   </body>
