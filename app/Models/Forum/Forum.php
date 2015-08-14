@@ -13,8 +13,32 @@ class Forum extends Model
     public $primaryKey = "fid";
 
     /**
+     * dz_forum_forum 中的1行，对应 dz_forum_forumfield中1行
+     */
+    public function forumfield()
+    {
+        return $this->belongsTo('App\Models\Forum\Field', 'fid', 'fid');
+    }
+
+    public function thread()
+    {
+        return $this->hasMany('App\Models\Forum\Thread', 'fid', 'fid');
+    }
+
+    /**
+     * 获得uid用户加入的圈子的信息
+     * @uid: int 用户id
+     * @return: Eloquent Object
+     */
+    public function getForumsByUid($uid)
+    {
+        //
+    }
+
+    /**
      * 获得所有的圈子的信息，按照fid来索引
-     * TODO: 在Model里面写Query是不合适的写法，得重构
+     * 经过再次检查发现这里如果改成ORM来操作数据
+     * 智慧让代码复杂很多，对于管理抽象一点帮助都没有
      *
      * @return: array
      */
@@ -37,27 +61,5 @@ class Forum extends Model
             return $data;
         });
         return $data;
-    }
-
-    /**
-     * dz_forum_forum 中的1行，对应 dz_forum_forumfield中1行
-     */
-    public function forumfield()
-    {
-        return $this->belongsTo('App\Models\Forum\Field', 'fid', 'fid');
-    }
-
-    public function thread()
-    {
-        return $this->hasMany('App\Models\Forum\Thread', 'fid', 'fid');
-    }
-
-    /**
-     * 获得uid用户加入的圈子的信息
-     * @uid: int 用户id
-     * @return: Eloquent Object
-     */
-    public function getForumsByUid($uid)
-    {
     }
 }
