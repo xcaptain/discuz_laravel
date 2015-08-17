@@ -8,7 +8,7 @@
 @section('contents')
   <script src="http://cdn.wysibb.com/js/jquery.wysibb.min.js"></script>
   <div class="publish-wrap">
-    {!! Form::open(['url' => '/thread/new', 'method' => 'post', 'id' => 'postform', 'target' => '_self']) !!}
+    {!! Form::open(['url' => '/thread', 'method' => 'post', 'id' => 'postform', 'target' => '_self']) !!}
       <div class="publish-tab">
         <div class="pub-tab">
           <div class="pub-tab-box">
@@ -28,8 +28,8 @@
 
       <div class="publish-input-box">
         {!! Form::token() !!}
-        {!! Form::hidden('posttime', time(), ['id' => 'posttime']) !!}
         {!! Form::hidden('wysiwyg', '1', ['id' => 'e_mode']) !!}
+        {!! Form::hidden('special', 0) !!}
 
         <div class="pub-input-list">
           <div class="pub-input-left">

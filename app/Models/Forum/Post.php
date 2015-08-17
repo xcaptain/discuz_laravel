@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table = "dz_forum_post";
+
     protected $primaryKey = "pid";
+
+    protected $fillable = [
+        'fid',
+        'subject',
+        'message'
+    ];
 
     public function thread()
     {

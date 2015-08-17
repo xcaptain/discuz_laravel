@@ -26,8 +26,8 @@ Route::get('/welcome', 'WelcomeController@index');
 
 Route::get('/thread-{tid}-{page}.html', 'ThreadController@show')
     ->where(['tid' => '^[1-9]\d*', 'page' => '^[1-9]\d*']);
-Route::get('/thread/new/', 'ThreadController@create');
-Route::post('/thread/new/', 'ThreadController@store');
+Route::get('/thread/create/', 'ThreadController@create');
+Route::post('/thread', 'ThreadController@store');
 
 
 Route::get('/forum.php', 'ForumController@index');

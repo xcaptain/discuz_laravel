@@ -19,14 +19,14 @@
     <base href="http://www.zeze.com/" />
     <base target= _blank />
     <!-- <link rel="stylesheet" type="text/css" href="data/cache/style_1_common.css?kQA" /> -->
-    <script type="text/javascript">var JSURL = 'http://www.7k7kjs.cn/zeze/v/1.0.16/js', STYLEID = '1', STATICURL = 'http://www.7k7kjs.cn/zeze/static/', IMGDIR = 'http://www.7k7kjs.cn/zeze/static/image/common', VERHASH = 'kQA', charset = 'utf-8', discuz_uid = '0', cookiepre = 'ezd0_47f6_', cookiedomain = '.zeze.com', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'newthread', creditnotice = '1|威望|,2|金钱|,3|贡献|', defaultstyle = '', REPORTURL = 'aHR0cDovL3d3dy56ZXplLmNvbS8=', SITEURL = 'http://www.zeze.com/', JSPATH = 'static/js/', CSSPATH = 'data/cache/style_', DYNAMICURL = '';</script>
+    <script type="text/javascript">var JSURL = '{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/js', STYLEID = '1', STATICURL = 'http://www.7k7kjs.cn/zeze/static/', IMGDIR = 'http://www.7k7kjs.cn/zeze/static/image/common', VERHASH = 'kQA', charset = 'utf-8', discuz_uid = '0', cookiepre = 'ezd0_47f6_', cookiedomain = '.zeze.com', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'newthread', creditnotice = '1|威望|,2|金钱|,3|贡献|', defaultstyle = '', REPORTURL = 'aHR0cDovL3d3dy56ZXplLmNvbS8=', SITEURL = 'http://www.zeze.com/', JSPATH = 'static/js/', CSSPATH = 'data/cache/style_', DYNAMICURL = '';</script>
     <!-- <script src="static/js/common.js?kQA" type="text/javascript"></script> -->
     <meta name="application-name" content="ZEZE!啧啧" />
     <meta name="msapplication-tooltip" content="ZEZE!啧啧" />
     <meta name="msapplication-task" content="name=论坛;action-uri=http://www.zeze.com/forum.php;icon-uri=http://www.zeze.com/http://www.7k7kjs.cn/zeze/static/image/common/bbs.ico" />
     <link rel="archives" title="ZEZE!啧啧" href="http://www.zeze.com/archiver/" />
     <!-- <script src="static/js/forum.js?kQA" type="text/javascript"></script> -->
-    <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.3.2/css/common-debug.css">
+    <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/common-debug.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     @yield('indexCss')
 
