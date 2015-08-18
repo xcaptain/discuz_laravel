@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\StoreThreadRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\ThreadRepository;
-use Carbon\Carbon;
+use App\Repositories\PostRepository;
+use Carbon;
 use App\Helpers\Message;
 
 class ThreadController extends Controller
@@ -16,13 +17,16 @@ class ThreadController extends Controller
      * 公共配置
      * @ppp: 每页显示楼层数, int
      */
-    public function __construct(ThreadRepository $thread)
-    {
+    public function __construct(
+        ThreadRepository $thread,
+        PostRepository $post
+    ) {
         $this->middleware('auth', ['except' => 'show']);
         $this->ppp = 20;
         Carbon::setLocale('zh'); //设置中文语言
         $this->now = Carbon::now();
         $this->thread = $thread;
+        $this->post = $post;
     }
 
     /**
@@ -50,20 +54,39 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreThreadRequest $request)
     {
-        $subject = $request->subject ? $request->subject : '';
-        $message = $request->message ? $request->message : '';
-        $author  = $request->user()->username;
-        $authorid= $request->user()->uid;
-
-        $thread = new Thread;
-        $t = ['subject'  => $subject,
-              'author'   => $author,
-              'authorid' => $authorid,
-              'message'  => $message,
+        $this->validate($request);
+        $inputs = $request->all();
+        $inputs['authorid'] = $request->user()->id;
+        $inputs['author'] = $request->user()->username;
+        $p = [
+            'author' => $author,
+            'authorid' => $authorid,
+            'message' => $request->message,
+            'fid' => $request->fid,
+            'first' => 1,
         ];
-        $thread->newThread($t);
+        $tid = DB::transaction(function () use ($inputs) {
+                // 插入thread表
+                $this->thread->authorid = $inputs['authorid'];
+                $this->thread->author = $inputs['author'];
+                $this->thread->lastposterid = $inputs['lastposterid'];
+                $this->thread->lastposter = $inputs['lastposter'];
+                $this->thread->dateline = Carbon::now()->timestamp;
+                $t = $this->thread->create($inputs);
+
+                // 插入Post表
+                $this->post->authorid = $inputs['authorid'];
+                $this->post->author = $inputs['author'];
+                $this->post->tid = $t->tid;
+                $this->post->first = 1;
+                $this->post->position = 1;
+                $this->post->create($inputs);
+
+                return $t->tid;
+            });
+        return redirect(action('ThreadController@show', $tid));
     }
 
     /**

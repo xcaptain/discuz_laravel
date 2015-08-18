@@ -1,17 +1,17 @@
 @extends('layouts/basic')
 
 @section('forumListCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.2.3/css/qz-list-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/qz-list-debug.css">
 @endsection
 
 @section('contents')
   <div class="qz-list-wrap">
 
     @if ($user)
-      @include('forum/myForums')
+      @include('forum/_index_myForums')
     @endif
 
-    @include('forum/allForums')
+    @include('forum/_index_allForums')
 
   </div>
 @endsection

@@ -30,6 +30,8 @@ return [
 
     'cdn' => 'http://i.zeze.com',
 
+    'fe'  => 'http://www.7k7kjs.cn',
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

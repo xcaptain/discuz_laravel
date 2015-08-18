@@ -1,20 +1,20 @@
 @extends('layouts/basic')
 
 @section('indexCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/my-qz-debug.css">
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/index-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/my-qz-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/index-debug.css">
 @endsection
 
 @section('contents')
-  @include('home/banner')
+  @include('home/_index_banner')
 
   <div class="my-qz-wrap">
     <div class="my-qz-main content-grid">
       <div class="zhuti-list-box grid-7" id="J-tiezi-list">
 
-        @include('home/categoryBar')
+        @include('home/_index_categoryBar')
 
-        @include('home/typeBar')
+        @include('home/_index_typeBar')
 
         @foreach($threadList as $k => $thread)
           <div class="list-list" data-tid="207680">
@@ -147,20 +147,11 @@
             </a>
           </div>
         </div>
-
-        <div class="phone-ad-box" style="margin-top: 30px;">
-          <a href="http://www.zeze.com/forum.php?mod=viewthread&amp;tid=174433" style="display:block;height:118px"><img src="http://n.7k7kimg.cn/2015/0522/1432292966253.png" alt="" width="280" height="118"></a>
-        </div>
-        <div class="phone-ad-box" style="margin-top: 30px;">
-          <!-- 广告位：啧啧-右侧栏悬停 -->
-          <script type="text/javascript">BAIDU_CLB_SLOT_ID = "1096524";</script>
-          <script src="http://cbjs.baidu.com/js/o.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_1096524_0"><iframe id="baidu_clb_slot_iframe_1096524_0" src="about:blank" onload="BAIDU_DUP_CLB_renderFrame('1096524_0')" width="280" height="390" vspace="0" hspace="0" allowtransparency="true" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div><script charset="utf-8" src="http://cb.baidu.com/ecom?di=1096524&amp;dcb=BAIDU_DUP_define&amp;dtm=BAIDU_DUP2_SETJSONADSLOT&amp;dbv=2&amp;dci=0&amp;dri=0&amp;dis=0&amp;dai=1&amp;dds=&amp;drs=1&amp;dvi=1430984165&amp;ltu=http%3A%2F%2Fwww.zeze.com%2F&amp;liu=&amp;ltr=&amp;lcr=&amp;ps=1130x884&amp;psr=1366x768&amp;par=1366x768&amp;pcs=1349x703&amp;pss=1349x11741&amp;pis=-1x-1&amp;cfv=17&amp;ccd=24&amp;chi=2&amp;cja=true&amp;cpl=5&amp;cmi=7&amp;cce=true&amp;col=zh-CN&amp;cec=UTF-8&amp;cdo=-1&amp;tsr=20&amp;tlm=1434539943&amp;tcn=1434539943&amp;tpr=1434539943219&amp;dpt=none&amp;coa=&amp;ti=ZEZE%E5%95%A7%E5%95%A7_zeze.com_%E5%8F%AA%E5%B1%9E%E4%BA%8E%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E4%B9%90%E5%9B%AD%20-zeze.com&amp;baidu_id="></script><script charset="utf-8" src="http://dup.baidustatic.com/painter/clb/fixed7o.js"></script>
-        </div>
       </div><!-- end my-qz-right -->
     </div><!-- end my-qz-main -->
   </div>
 
-  @include('home/pagination')
+  @include('home/_index_pagination')
 @endsection
 
 @section('home/bottom')

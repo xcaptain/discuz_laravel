@@ -1,7 +1,7 @@
 @extends('layouts/basic')
 
 @section('threadCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.0.16/css/tiezi-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/tiezi-debug.css">
 @endsection
 
 @section('contents')
