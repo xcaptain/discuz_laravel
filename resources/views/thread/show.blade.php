@@ -121,12 +121,15 @@
         <input type="hidden" name="formhash" value="c16192c8">
         <div class="fb-textarea">
           <div class="area">
-            <div class="pt hm show" id="J-bottom-editor-unlog">
-              您需要登录后才可以回帖
-              <a href="member.php?mod=logging&amp;action=login" id="J-bottom-edit-btn-login" class="xi2">登录</a>|<a href="member.php?mod=register" class="xi2">立即注册</a>
-              <a href="http://www.zeze.com/connect.php?mod=login&amp;op=init&amp;referer=forum.php%3Fmod%3Dviewthread%26tid%3D89258%26extra%3Dpage%253D1%26page%3D1&amp;statfrom=login" target="_top" rel="nofollow"><img src="http://www.7k7kjs.cn/zeze/static/image/common/btn-qq-login.png" class="vm" data-bd-imgshare-binded="1"></a>
-            </div>
-            <textarea name="message" id="e_textarea" class="pt" rows="10" style="display: none;"></textarea>
+            @if(Auth::user())
+              <textarea name="message" id="e_textarea" class="pt" rows="10" style="display: none;"></textarea>
+            @else
+              <div class="pt hm show" id="J-bottom-editor-unlog">
+                您需要登录后才可以回帖
+                <a href="member.php?mod=logging&amp;action=login" id="J-bottom-edit-btn-login" class="xi2">登录</a>|<a href="member.php?mod=register" class="xi2">立即注册</a>
+                <a href="http://www.zeze.com/connect.php?mod=login&amp;op=init&amp;referer=forum.php%3Fmod%3Dviewthread%26tid%3D89258%26extra%3Dpage%253D1%26page%3D1&amp;statfrom=login" target="_top" rel="nofollow"><img src="http://www.7k7kjs.cn/zeze/static/image/common/btn-qq-login.png" class="vm" data-bd-imgshare-binded="1"></a>
+              </div>
+            @endif
           </div>
         </div>
         <div class="fb-area-bottom" style="display: none;">
