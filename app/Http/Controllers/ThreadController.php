@@ -76,6 +76,7 @@ class ThreadController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  int  $page
      * @return Response
      */
     public function show($tid, $page)
@@ -96,6 +97,43 @@ class ThreadController extends Controller
             'forum'  => $forum,
             'page'   => $page,
         ]);
+    }
+
+    /**
+     * 回复高级模式页面，就展示一个文本框
+     *
+     * @param int $tid
+     * @return Response
+     */
+    public function getReply($tid)
+    {
+        $thread = $this->thread->find($tid);
+        if (!$thread) {
+            dd('thread not exists');
+        }
+        return view('thread/reply', [
+            'tid' => $tid,
+        ]);
+    }
+
+    public function postReply(Request $request)
+    {
+        $this->validate($request, [
+            'message' => 'required|min:5',
+        ]);
+        $inputs = $request->all();
+        $inputs['author'] = $request->user()->username;
+        $inputs['authorid'] = $request->user()->uid;
+        $inputs['dateline'] = Carbon::now()->timestamp;
+
+        $thread = $this->thread->find($inputs['tid']);
+        $thread->increment('replies', 1, [
+            'lastpost' => Carbon::now()->timestamp,
+            'lastposter' => $request->user()->username,
+            'lastposterid' => $request->user()->uid,
+        ]);
+        $thread->post()->create($inputs);
+        return redirect(action('ThreadController@show', ['tid' => $request->tid, 'page' => 1]));
     }
 
     /**

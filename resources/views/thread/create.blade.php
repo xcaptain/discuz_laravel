@@ -1,4 +1,4 @@
-@extends('layouts/basic')
+@extends('layouts.basic')
 
 @section('threadCss')
   <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/fabiao-debug.css">

@@ -14,6 +14,7 @@ class Post extends Model
 
     protected $fillable = [
         'fid',
+        'tid',
         'subject',
         'message',
         'author',
