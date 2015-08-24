@@ -67,6 +67,7 @@ class ThreadController extends Controller
             'fid' => $request->fid,
             'first' => 1,
         ];
+        // TODO: 这里不应该用transaction,应该使用关系插入
         $tid = DB::transaction(function () use ($inputs) {
                 // 插入thread表
                 $this->thread->authorid = $inputs['authorid'];
