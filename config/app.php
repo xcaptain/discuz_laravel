@@ -30,6 +30,8 @@ return [
 
     'cdn' => 'http://i.zeze.com',
 
+    'fe'  => 'http://www.7k7kjs.cn',
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -150,6 +152,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        //Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider::class,
     ],
 
     /*

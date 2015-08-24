@@ -1,7 +1,7 @@
 @extends('layouts/basic')
 
 @section('hispageCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.2.3/css/his-qz-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/his-qz-debug.css">
 @endsection
 
 @section('contents')

@@ -45,6 +45,12 @@ class User extends Model
         //
     }
 
+    /**
+     * 使用eager求值的方式联合2张表查询数据
+     * TODO: 目前的方式会导致内存溢出，还没有找到问题
+     * @param Int 用户id
+     * @return Eloquent Object
+     */
     public function getUserDetail($uid)
     {
         return $this->find($uid);

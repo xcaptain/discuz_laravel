@@ -1,14 +1,14 @@
-@extends('layouts/basic')
+@extends('layouts.basic')
 
 @section('threadCss')
-  <link rel="stylesheet" href="http://www.7k7kjs.cn/zeze/v/1.1.3/css/fabiao-debug.css">
+  <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/fabiao-debug.css">
   <link rel="stylesheet" href="http://cdn.wysibb.com/css/default/wbbtheme.css" />
 @endsection
 
 @section('contents')
   <script src="http://cdn.wysibb.com/js/jquery.wysibb.min.js"></script>
   <div class="publish-wrap">
-    {!! Form::open(['url' => '/thread/new', 'method' => 'post', 'id' => 'postform', 'target' => '_self']) !!}
+    {!! Form::open(['url' => '/thread', 'method' => 'post', 'id' => 'postform', 'target' => '_self']) !!}
       <div class="publish-tab">
         <div class="pub-tab">
           <div class="pub-tab-box">
@@ -28,8 +28,9 @@
 
       <div class="publish-input-box">
         {!! Form::token() !!}
-        {!! Form::hidden('posttime', time(), ['id' => 'posttime']) !!}
         {!! Form::hidden('wysiwyg', '1', ['id' => 'e_mode']) !!}
+        {!! Form::hidden('special', 0) !!}
+        {!! Form::hidden('fid', $fid) !!}
 
         <div class="pub-input-list">
           <div class="pub-input-left">

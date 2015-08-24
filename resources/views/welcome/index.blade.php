@@ -6,15 +6,15 @@
 @endsection
 
 @section('contents')
-  @include('home/banner')
+  @include('home/_index_banner')
 
   <div class="my-qz-wrap">
     <div class="my-qz-main content-grid">
       <div class="zhuti-list-box grid-7" id="J-tiezi-list">
 
-        @include('home/categoryBar')
+        @include('home/_index_categoryBar')
 
-        @include('home/typeBar')
+        @include('home/_index_typeBar')
 
         @foreach($threadList as $k => $thread)
           <div class="list-list" data-tid="207680">
@@ -160,7 +160,7 @@
     </div><!-- end my-qz-main -->
   </div>
 
-  @include('home/pagination')
+  @include('home/_index_pagination')
 @endsection
 
 @section('home/bottom')

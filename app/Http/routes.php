@@ -24,10 +24,17 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index');
 Route::get('/welcome', 'WelcomeController@index');
 
+// 约束不搞那么严格，tid只要是数字就行，不判断是否为0
 Route::get('/thread-{tid}-{page}.html', 'ThreadController@show')
     ->where(['tid' => '^[1-9]\d*', 'page' => '^[1-9]\d*']);
-Route::get('/thread/new/', 'ThreadController@create');
-Route::post('/thread/new/', 'ThreadController@store');
+Route::get('/thread/create/{fid}', 'ThreadController@create')
+    ->where(['fid' => '[0-9]+']);
+Route::post('/thread', 'ThreadController@store');
+
+// 发布回帖
+Route::get('/thread/reply/{tid}', 'ThreadController@getReply')
+    ->where(['tid' => '[0-9]+']);
+Route::post('/thread/reply', 'ThreadController@postReply');
 
 
 Route::get('/forum.php', 'ForumController@index');

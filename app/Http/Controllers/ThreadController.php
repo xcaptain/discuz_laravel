@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\StoreThreadRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\ThreadRepository;
-use Carbon\Carbon;
+use App\Repositories\PostRepository;
+use Carbon;
 use App\Helpers\Message;
 
 class ThreadController extends Controller
@@ -16,13 +17,16 @@ class ThreadController extends Controller
      * 公共配置
      * @ppp: 每页显示楼层数, int
      */
-    public function __construct(ThreadRepository $thread)
-    {
+    public function __construct(
+        ThreadRepository $thread,
+        PostRepository $post
+    ) {
         $this->middleware('auth', ['except' => 'show']);
         $this->ppp = 20;
         Carbon::setLocale('zh'); //设置中文语言
         $this->now = Carbon::now();
         $this->thread = $thread;
+        $this->post = $post;
     }
 
     /**
@@ -40,9 +44,11 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function create(Request $request)
+    public function create($fid, Request $request)
     {
-        return view('thread/create');
+        return view('thread/create', [
+            'fid' => $fid,
+        ]);
     }
 
     /**
@@ -52,30 +58,30 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        $subject = $request->subject ? $request->subject : '';
-        $message = $request->message ? $request->message : '';
-        $author  = $request->user()->username;
-        $authorid= $request->user()->uid;
-
-        $thread = new Thread;
-        $t = ['subject'  => $subject,
-              'author'   => $author,
-              'authorid' => $authorid,
-              'message'  => $message,
-        ];
-        $thread->newThread($t);
+        $this->validate($request, [
+            'subject' => 'required|max:255|min:5',
+            'message' => 'required|min:5'
+        ]);
+        $inputs = $request->all();
+        $inputs['lastposterid'] = $inputs['authorid'] = $request->user()->uid;
+        $inputs['lastposter'] = $inputs['author'] = $request->user()->username;
+        $inputs['lastpost'] = $inputs['dateline'] = Carbon::now()->timestamp;
+        // 采用关系模型来写入数据库而不是手动设置事务
+        $thread = $this->thread->create($inputs);
+        $post = $thread->post()->create($inputs);
+        return redirect(action('ThreadController@show', ['tid' => $thread->tid, 'page' => 1]));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  int  $page
      * @return Response
      */
     public function show($tid, $page)
     {
-        $threadModel = new Thread;
-        $thread = $threadModel->find($tid);
+        $thread = $this->thread->find($tid);
         $posts = $thread->post()
                ->where('invisible', 0)
                ->orderBy('pid', 'asc')
@@ -91,6 +97,43 @@ class ThreadController extends Controller
             'forum'  => $forum,
             'page'   => $page,
         ]);
+    }
+
+    /**
+     * 回复高级模式页面，就展示一个文本框
+     *
+     * @param int $tid
+     * @return Response
+     */
+    public function getReply($tid)
+    {
+        $thread = $this->thread->find($tid);
+        if (!$thread) {
+            dd('thread not exists');
+        }
+        return view('thread/reply', [
+            'tid' => $tid,
+        ]);
+    }
+
+    public function postReply(Request $request)
+    {
+        $this->validate($request, [
+            'message' => 'required|min:5',
+        ]);
+        $inputs = $request->all();
+        $inputs['author'] = $request->user()->username;
+        $inputs['authorid'] = $request->user()->uid;
+        $inputs['dateline'] = Carbon::now()->timestamp;
+
+        $thread = $this->thread->find($inputs['tid']);
+        $thread->increment('replies', 1, [
+            'lastpost' => Carbon::now()->timestamp,
+            'lastposter' => $request->user()->username,
+            'lastposterid' => $request->user()->uid,
+        ]);
+        $thread->post()->create($inputs);
+        return redirect(action('ThreadController@show', ['tid' => $request->tid, 'page' => 1]));
     }
 
     /**

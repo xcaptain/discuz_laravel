@@ -11,6 +11,14 @@ class Thread extends Model
 
     protected $primaryKey = "tid";
 
+    protected $fillable = [
+        'subject',
+        'fid',
+        'special',
+        'author',
+        'authorid'
+    ];
+
     /**
      * 禁用update_at, created_at
      * 一定要用public，不然会出现莫名其妙的bug
