@@ -64,6 +64,7 @@ class ForumController extends Controller
         return view('forum/show', [
             'now' => $this->now,
             'threadList' => $threadList,
+            'fid' => $fid,
         ]);
     }
 }

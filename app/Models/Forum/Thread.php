@@ -15,6 +15,8 @@ class Thread extends Model
         'subject',
         'fid',
         'special',
+        'author',
+        'authorid'
     ];
 
     /**

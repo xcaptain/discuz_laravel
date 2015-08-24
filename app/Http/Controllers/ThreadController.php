@@ -44,9 +44,11 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function create(Request $request)
+    public function create($fid, Request $request)
     {
-        return view('thread/create');
+        return view('thread/create', [
+            'fid' => $fid,
+        ]);
     }
 
     /**
@@ -54,45 +56,27 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function store(StoreThreadRequest $request)
+    public function store(Request $request)
     {
-        $this->validate($request);
+        $this->validate($request, [
+            'subject' => 'required|max:255|min:5',
+            'message' => 'required|min:5'
+        ]);
         $inputs = $request->all();
-        $inputs['authorid'] = $request->user()->id;
-        $inputs['author'] = $request->user()->username;
-        $p = [
-            'author' => $author,
-            'authorid' => $authorid,
-            'message' => $request->message,
-            'fid' => $request->fid,
-            'first' => 1,
-        ];
-        $tid = DB::transaction(function () use ($inputs) {
-                // 插入thread表
-                $this->thread->authorid = $inputs['authorid'];
-                $this->thread->author = $inputs['author'];
-                $this->thread->lastposterid = $inputs['lastposterid'];
-                $this->thread->lastposter = $inputs['lastposter'];
-                $this->thread->dateline = Carbon::now()->timestamp;
-                $t = $this->thread->create($inputs);
-
-                // 插入Post表
-                $this->post->authorid = $inputs['authorid'];
-                $this->post->author = $inputs['author'];
-                $this->post->tid = $t->tid;
-                $this->post->first = 1;
-                $this->post->position = 1;
-                $this->post->create($inputs);
-
-                return $t->tid;
-            });
-        return redirect(action('ThreadController@show', $tid));
+        $inputs['lastposterid'] = $inputs['authorid'] = $request->user()->uid;
+        $inputs['lastposter'] = $inputs['author'] = $request->user()->username;
+        $inputs['lastpost'] = $inputs['dateline'] = Carbon::now()->timestamp;
+        // 采用关系模型来写入数据库而不是手动设置事务
+        $thread = $this->thread->create($inputs);
+        $post = $thread->post()->create($inputs);
+        return redirect(action('ThreadController@show', ['tid' => $thread->tid, 'page' => 1]));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  int  $page
      * @return Response
      */
     public function show($tid, $page)
@@ -113,6 +97,43 @@ class ThreadController extends Controller
             'forum'  => $forum,
             'page'   => $page,
         ]);
+    }
+
+    /**
+     * 回复高级模式页面，就展示一个文本框
+     *
+     * @param int $tid
+     * @return Response
+     */
+    public function getReply($tid)
+    {
+        $thread = $this->thread->find($tid);
+        if (!$thread) {
+            dd('thread not exists');
+        }
+        return view('thread/reply', [
+            'tid' => $tid,
+        ]);
+    }
+
+    public function postReply(Request $request)
+    {
+        $this->validate($request, [
+            'message' => 'required|min:5',
+        ]);
+        $inputs = $request->all();
+        $inputs['author'] = $request->user()->username;
+        $inputs['authorid'] = $request->user()->uid;
+        $inputs['dateline'] = Carbon::now()->timestamp;
+
+        $thread = $this->thread->find($inputs['tid']);
+        $thread->increment('replies', 1, [
+            'lastpost' => Carbon::now()->timestamp,
+            'lastposter' => $request->user()->username,
+            'lastposterid' => $request->user()->uid,
+        ]);
+        $thread->post()->create($inputs);
+        return redirect(action('ThreadController@show', ['tid' => $request->tid, 'page' => 1]));
     }
 
     /**

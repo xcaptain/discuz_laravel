@@ -1,4 +1,4 @@
-@extends('layouts/basic')
+@extends('layouts.basic')
 
 @section('threadCss')
   <link rel="stylesheet" href="{{ config('app.fe') }}/zeze/v/{{ env('cssversion') }}/css/fabiao-debug.css">
@@ -30,6 +30,7 @@
         {!! Form::token() !!}
         {!! Form::hidden('wysiwyg', '1', ['id' => 'e_mode']) !!}
         {!! Form::hidden('special', 0) !!}
+        {!! Form::hidden('fid', $fid) !!}
 
         <div class="pub-input-list">
           <div class="pub-input-left">

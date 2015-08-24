@@ -10,10 +10,16 @@ class Post extends Model
 
     protected $primaryKey = "pid";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'fid',
+        'tid',
         'subject',
-        'message'
+        'message',
+        'author',
+        'authorid',
+        'dateline',
     ];
 
     public function thread()
