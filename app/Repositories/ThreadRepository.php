@@ -21,4 +21,9 @@ class ThreadRepository extends Repository
     {
         return $this->model->getThreadListByAuthor($uid, $typeid, $tpp);
     }
+
+    public function post()
+    {
+        return $this->model->post();
+    }
 }

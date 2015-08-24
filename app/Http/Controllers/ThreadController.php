@@ -44,9 +44,11 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function create(Request $request)
+    public function create($fid, Request $request)
     {
-        return view('thread/create');
+        return view('thread/create', [
+            'fid' => $fid,
+        ]);
     }
 
     /**
@@ -54,40 +56,20 @@ class ThreadController extends Controller
      *
      * @return Response
      */
-    public function store(StoreThreadRequest $request)
+    public function store(Request $request)
     {
-        $this->validate($request);
+        $this->validate($request, [
+            'subject' => 'required|max:255|min:5',
+            'message' => 'required|min:5'
+        ]);
         $inputs = $request->all();
-        $inputs['authorid'] = $request->user()->id;
-        $inputs['author'] = $request->user()->username;
-        $p = [
-            'author' => $author,
-            'authorid' => $authorid,
-            'message' => $request->message,
-            'fid' => $request->fid,
-            'first' => 1,
-        ];
-        // TODO: 这里不应该用transaction,应该使用关系插入
-        $tid = DB::transaction(function () use ($inputs) {
-                // 插入thread表
-                $this->thread->authorid = $inputs['authorid'];
-                $this->thread->author = $inputs['author'];
-                $this->thread->lastposterid = $inputs['lastposterid'];
-                $this->thread->lastposter = $inputs['lastposter'];
-                $this->thread->dateline = Carbon::now()->timestamp;
-                $t = $this->thread->create($inputs);
-
-                // 插入Post表
-                $this->post->authorid = $inputs['authorid'];
-                $this->post->author = $inputs['author'];
-                $this->post->tid = $t->tid;
-                $this->post->first = 1;
-                $this->post->position = 1;
-                $this->post->create($inputs);
-
-                return $t->tid;
-            });
-        return redirect(action('ThreadController@show', $tid));
+        $inputs['lastposterid'] = $inputs['authorid'] = $request->user()->uid;
+        $inputs['lastposter'] = $inputs['author'] = $request->user()->username;
+        $inputs['lastpost'] = $inputs['dateline'] = Carbon::now()->timestamp;
+        // 采用关系模型来写入数据库而不是手动设置事务
+        $thread = $this->thread->create($inputs);
+        $post = $thread->post()->create($inputs);
+        return redirect(action('ThreadController@show', ['tid' => $thread->tid, 'page' => 1]));
     }
 
     /**
